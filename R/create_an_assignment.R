@@ -103,7 +103,7 @@ create_assignment <- function() {
         txt <- paste0("\n\n",
                       "#' *",raw_d[raw_d$id %in% ids[i],][[q]],"*\n",
                       "#' \n",
-                      "#+ ", ids[i], ", eval = FALSE\n",
+                      "#+ ", ids[i], "_answer, eval = FALSE\n",
                       ans[i],
                       "\n\n\n")
         rstudioapi::insertText(txt)
