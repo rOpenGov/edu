@@ -1,0 +1,33 @@
+# Read assignments
+- id: import_csv_data_from_url
+  domain: import
+  q_fi: "Miten lataa datasetin `pensions` sivulta: https://vincentarelbundock.github.io/Rdatasets/datasets.html"
+  q_en: "How to download dataset `pensions` from page: https://vincentarelbundock.github.io/Rdatasets/datasets.html"
+  q_se: "Hur man laddar ner dataset `pensions` från: https://vincentarelbundock.github.io/Rdatasets/datasets.html"
+  q_ru: "Как загрузить набор данных `pensions` из: https://vincentarelbundock.github.io/Rdatasets/datasets.html"
+  ans1: "read.csv('https://vincentarelbundock.github.io/Rdatasets/csv/robustbase/pension.csv', stringsAsFactors=FALSE)"
+  ans2: "readr::read_csv('https://vincentarelbundock.github.io/Rdatasets/csv/robustbase/pension.csv')"
+- id: import_dataframe_manually
+  domain: import
+  q_fi: "Luo taulukko ydinasevaltioista, niiden presidenteistä ja väestömäärästä"
+  q_en: "Create table of states with nuclear weapons, with presidents and population"
+  q_se: "Skapa tabell över stater med kärnvapen, med presidenter och befolkning"
+  q_ru: "Создать таблицу государств с ядерным оружием, с президентами и населением"
+  ans1: "data.frame(state = c('United States','Russian Federation','United Kingdom','France','China'),
+                    president = c('Donald Trump','Vladimir Putin','François Hollande','Elisabeth II','Xi Jinping'),
+                    population = c(1234,1234,1234,1234,1234),
+                    stringsAsFactors=FALSE)
+                    )"
+  ans2: "dplyr::data_frame(state = c('United States','Russian Federation','United Kingdom','France','China'),
+                    president = c('Donald Trump','Vladimir Putin','François Hollande','Elisabeth II','Xi Jinping'),
+                    population = c(1234,1234,1234,1234,1234))
+                    )"
+# Export assignment
+- id: write_csv_data
+  domain: export
+  q_fi: "Miten lataa datasetin `pensions` sivulta: https://vincentarelbundock.github.io/Rdatasets/datasets.html"
+  q_en: "How to write dataset `pensions` from page: https://vincentarelbundock.github.io/Rdatasets/datasets.html"
+  q_se: "Hur man laddar ner dataset `pensions` från: https://vincentarelbundock.github.io/Rdatasets/datasets.html"
+  q_ru: "Как загрузить набор данных `pensions` из: https://vincentarelbundock.github.io/Rdatasets/datasets.html"
+  ans1: "read.csv('https://vincentarelbundock.github.io/Rdatasets/csv/robustbase/pension.csv', stringsAsFactors=FALSE)"
+  ans2: "readr::read_csv('https://vincentarelbundock.github.io/Rdatasets/csv/robustbase/pension.csv')"

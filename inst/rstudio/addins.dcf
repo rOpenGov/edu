@@ -1,0 +1,7 @@
+
+Name: Create an assignment
+Description: Create an assignment by adding title AND individual questions
+Binding: create_assignment
+Interactive: true
+
+
