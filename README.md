@@ -11,9 +11,9 @@ This infrastructure gathers modules for constructing **domain spesific** assignm
 devtools::install_github("muuankarski/edu")
 ```
 
-## The gif
+[**Check this gif!**](http://software.markuskainu.fi/ropengov/edu/ropengov_edu.gif)
 
-<img src="http://software.markuskainu.fi/ropengov/edu/ropengov_edu.gif"/>
+
 
 
 
