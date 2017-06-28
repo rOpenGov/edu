@@ -1,27 +1,185 @@
-# Read assignments
-- id: import_csv_data_from_url
-  domain: import
-  q_fi: "Miten lataa datasetin `pensions` sivulta: https://vincentarelbundock.github.io/Rdatasets/datasets.html"
-  q_en: "How to download dataset `pensions` from page: https://vincentarelbundock.github.io/Rdatasets/datasets.html"
-  q_se: "Hur man laddar ner dataset `pensions` från: https://vincentarelbundock.github.io/Rdatasets/datasets.html"
-  q_ru: "Как загрузить набор данных `pensions` из: https://vincentarelbundock.github.io/Rdatasets/datasets.html"
-  ans1: "read.csv('https://vincentarelbundock.github.io/Rdatasets/csv/robustbase/pension.csv', stringsAsFactors=FALSE)"
-  ans2: "readr::read_csv('https://vincentarelbundock.github.io/Rdatasets/csv/robustbase/pension.csv')"
-- id: import_dataframe_manually
-  domain: import
-  q_fi: "Luo taulukko ydinasevaltioista, niiden presidenteistä ja väestömäärästä"
-  q_en: "Create table of states with nuclear weapons, with presidents and population"
+# Basics assignments
+- id: create_numeric_vector
+  domain: basics
+  q_fi: "Miten luot numeerisen vektorin, jossa luvut 1 ja 2"
+  q_en: "Create a numeric vector containing numbers 1 and 2"
+  q_se: "Översättning inte tillgänglig"
+  q_ru: "Перевод не доступен"
+  ans: |
+        c(1,2)
+        # Or
+        c(1:2)
+- id: create_character_vector
+  domain: basics
+  q_fi: "Miten luot kirjainvektorin, jossa sanat `yksi` ja `kaksi`"
+  q_en: "Create a character vector containing words `yksi` ja `kaksi`"
+  q_se: "Översättning inte tillgänglig"
+  q_ru: "Перевод не доступен"
+  ans: c("yksi", "kaksi")
+- id: create_sorted_character_vector
+  domain: basics
+  q_fi: "Luo kirjainvektori `nordics` (character vector), jonka elementteinä ovat pohjoismaiden nimet englanniksi kirjoitettuna aakkosjärjestyksessä"
+  q_en: "Create a character vector `nordics`, whose elements are Nordic countries in English in albhabetical order"
+  q_se: "Översättning inte tillgänglig"
+  q_ru: "Перевод не доступен"
+  ans: |
+        nordics <- c("Denmark","Finland","Iceland","Norway","Sweden")
+        # Or
+        nordics <- sort(c("Finland","Iceland","Denmark","Norway","Sweden"))
+- id: create_long_numeric_vector
+  domain: basics
+  q_fi: "Luo numeerinen vektorin nimeltä `nro`, jossa numero välitä 1-30. Miten saat selville vektori luokan?"
+  q_en: "Create a numeric vector `nro`, containing numbers from 1 to 30. How can you determine the class of that vector="
+  q_se: "Översättning inte tillgänglig"
+  q_ru: "Перевод не доступен"
+  ans: |
+        nro <- 1:30
+        # Or
+        nro <- c(1:30)
+        # Or
+        nro <- c(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30)
+        # And
+        is(nro)
+        # Or
+        class(nro)
+        # Or
+        typeof(nro)
+- id: squareroot
+  domain: basics
+  q_fi: "Millä komenolla saat neliöjuuren luvusta 529"
+  q_en: "How can you get square root from number 529"
+  q_se: "Översättning inte tillgänglig"
+  q_ru: "Перевод не доступен"
+  ans: sqrt(529)
+- id: filesystem_dir_create
+  domain: basics
+  q_fi: "Millä komennolla luot nykyisen työhakemistoon kansion `assignment1`"
+  q_en: "Create a new folder `assignment1` into your current working directory"
+  q_se: "Översättning inte tillgänglig"
+  q_ru: "Перевод не доступен"
+  ans: dir.create("./assignment1")
+- id: filesystem_dir_create_rec
+  domain: basics
+  q_fi: "Millä komennolla luot nykyisen työhakemistoon kansion `assignment1/plots`"
+  q_en: "Create a new folder `assignment1/plots` into your current working directory"
+  q_se: "Översättning inte tillgänglig"
+  q_ru: "Перевод не доступен"
+  ans: dir.create("./assignment1/plots", resursive = TRUE)
+- id: filesystem_file_create_copy
+  domain: basics
+  q_fi: "Luo kansioon `assignment1` tiedosto 'notes.txt' ja kopioi se samaan kansioon nimellä `notes.md`"
+  q_en: "Create a file `notes.txt` into folder `assignment1, and copy it to same directory with name `notes.md`"
+  q_se: "Översättning inte tillgänglig"
+  q_ru: "Перевод не доступен"
+  ans: |
+        file.create("./assignment1/notes.txt")
+        # And
+        file.copy("./assignment1/notes.txt", "./assignment1/notes.md")
+- id: filesystem_list_files
+  domain: basics
+  q_fi: "Listaa nykyisen työhakemistosi tiedostot"
+  q_en: "List all files in your current working directory"
+  q_se: "Översättning inte tillgänglig"
+  q_ru: "Перевод не доступен"
+  ans: list.files(path = "./", all.files = TRUE, full.names = TRUE)
+- id: filesystem_file_remove
+  domain: basics
+  q_fi: "Poista nykyisestä työhakemistosta tiedosto `file.txt`"
+  q_en: "Remove file `file.txt` from your current working directory"
+  q_se: "Översättning inte tillgänglig"
+  q_ru: "Перевод не доступен"
+  ans: file.remove("./file.txt")
+- id: filesystem_dir_remove
+  domain: basics
+  q_fi: "Poista nykyisestä työhakemistosta kansio `assignment1`"
+  q_en: "Remove folder `assignment1` from your current working directory"
+  q_se: "Översättning inte tillgänglig"
+  q_ru: "Перевод не доступен"
+  ans: unlink("./assignment1",recursive= TRUE, force=TRUE)
+- id: packages_install
+  domain: basics
+  q_fi: "Asenna CRAN:sta paketti `eurostat`"
+  q_en: "Install package `eurostat` from CRAN"
+  q_se: "Översättning inte tillgänglig"
+  q_ru: "Перевод не доступен"
+  ans: install.packages("eurostat")
+- id: packages_install_github
+  domain: basics
+  q_fi: "Asenna Github:sta paketti `rqog` osoitteesta https://github.com/ropengov/rqog"
+  q_en: "Install package `rqog` from Github at https://github.com/ropengov/rqog"
+  q_se: "Översättning inte tillgänglig"
+  q_ru: "Перевод не доступен"
+  ans: |
+        devtools::install_github("ropengov/rqog")
+        # Or
+        devtools::install_git("https://github.com/ropengov/rqog")
+- id: packages_update_packages
+  domain: basics
+  q_fi: "Päivitä kaikki CRAN:sta asentamasi paketit"
+  q_en: "Update all your CRAN packages"
+  q_se: "Översättning inte tillgänglig"
+  q_ru: "Перевод не доступен"
+  ans: update.packages(ask = FALSE)
+- id: data_structure_dataframe
+  domain: basics
+  q_fi: "Luo data ydinasevaltioista, niiden presidenteistä/valtiopäämiehistä ja väestömäärästä (ks. https://en.wikipedia.org/wiki/List_of_states_with_nuclear_weapons)"
+  q_en: "Create data of states with nuclear weapons, with presidents/heads of state and population (see https://en.wikipedia.org/wiki/List_of_states_with_nuclear_weapons)"
   q_se: "Skapa tabell över stater med kärnvapen, med presidenter och befolkning"
   q_ru: "Создать таблицу государств с ядерным оружием, с президентами и населением"
-  ans1: "data.frame(state = c('United States','Russian Federation','United Kingdom','France','China'),
+  ans: |
+        data.frame(country = c('United States','Russian Federation','France','United Kingdom','China'),
                     president = c('Donald Trump','Vladimir Putin','François Hollande','Elisabeth II','Xi Jinping'),
                     population = c(1234,1234,1234,1234,1234),
                     stringsAsFactors=FALSE)
-                    )"
-  ans2: "dplyr::data_frame(state = c('United States','Russian Federation','United Kingdom','France','China'),
+                    )
+        # Or
+        dplyr::data_frame(country = c('United States','Russian Federation','France','United Kingdom','China'),
                     president = c('Donald Trump','Vladimir Putin','François Hollande','Elisabeth II','Xi Jinping'),
                     population = c(1234,1234,1234,1234,1234))
-                    )"
+                    )
+        tibble::tribble(
+        # Or
+        ~country, ~president, ~population,
+        "United States","Donald Trump",1234,
+        "Russian Federation","Vladimir Putin",1234,
+        "United Kingdom","François Hollande",1234,
+        "France","Elisabeth II", 1234,
+        "China" ,"Xi Jinping", 1234
+        )
+- id: data_structure_dataframe_add_col
+  domain: basics
+  q_fi: "Lisää ydinasevaltiodataan uusi muuttuja `iso2`, jossa kunkin maan iso2-koodi https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2"
+  q_en: "Add a column `iso2` to nuclear weapon state data that contains the iso2-country  code https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2"
+  q_se: "Skapa tabell över stater med kärnvapen, med presidenter och befolkning"
+  q_ru: "Создать таблицу государств с ядерным оружием, с президентами и населением"
+  ans: |
+        df$iso2 <- c("us","ru","gb","fr","cn")
+        # Or
+        df["iso2"] <- c("us","ru","gb","fr","cn")
+- id: data_structure_dataframe_add_row
+  domain: basics
+  q_fi: "Lisää ydinasevaltiodataan uusi rivi eli maa nimeltä Pakistan, ja siitä tiedot country, president, population ja iso2-koodi"
+  q_en: "Add a row or country, Pakistan, including data on country, president, population ja iso2-code"
+  q_se: "Skapa tabell över stater med kärnvapen, med presidenter och befolkning"
+  q_ru: "Создать таблицу государств с ядерным оружием, с президентами и населением"
+  ans: |
+        rbind(df, c("Pakistan","pressa",1234,"PK"))
+        # Or
+        pak_data <- c(country = "Pakistan",
+                      president = "pressa",
+                      population = 1234,
+                      iso2 = "PK")
+        bind_rows(df, pakdata)
+# Import assignments
+- id: import_csv_data_from_url
+  domain: import
+  q_fi: "Miten tuot datasetin `pensions` R:ään sivulta: https://vincentarelbundock.github.io/Rdatasets/datasets.html "
+  q_en: "How to import dataset `pensions` from page: https://vincentarelbundock.github.io/Rdatasets/datasets.html "
+  q_se: "Hur man import dataset `pensions` från: https://vincentarelbundock.github.io/Rdatasets/datasets.html "
+  q_ru: "Как загрузить набор данных `pensions` из: https://vincentarelbundock.github.io/Rdatasets/datasets.html "
+  ans: |
+       read.csv('https://vincentarelbundock.github.io/Rdatasets/csv/robustbase/pension.csv', stringsAsFactors=FALSE)
+       readr::read_csv('https://vincentarelbundock.github.io/Rdatasets/csv/robustbase/pension.csv')
 # Export assignment
 - id: write_csv_data
   domain: export
@@ -29,5 +187,6 @@
   q_en: "How to write dataset `pensions` from page: https://vincentarelbundock.github.io/Rdatasets/datasets.html"
   q_se: "Hur man laddar ner dataset `pensions` från: https://vincentarelbundock.github.io/Rdatasets/datasets.html"
   q_ru: "Как загрузить набор данных `pensions` из: https://vincentarelbundock.github.io/Rdatasets/datasets.html"
-  ans1: "read.csv('https://vincentarelbundock.github.io/Rdatasets/csv/robustbase/pension.csv', stringsAsFactors=FALSE)"
-  ans2: "readr::read_csv('https://vincentarelbundock.github.io/Rdatasets/csv/robustbase/pension.csv')"
+  ans: |
+      "read.csv('https://vincentarelbundock.github.io/Rdatasets/csv/robustbase/pension.csv', stringsAsFactors=FALSE)"
+      "readr::read_csv('https://vincentarelbundock.github.io/Rdatasets/csv/robustbase/pension.csv')"

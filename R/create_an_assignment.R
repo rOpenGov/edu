@@ -40,10 +40,10 @@ create_assignment <- function() {
                                   ru = c("Выберите домен","Выберите вопрос"))
 
 
-    translate_domain <- data_frame(en = c("import","export","tidy","transform","visualise","model","communicate","automate"),
-                                   fi = c("tuo","vie","siivoa","muokkaa","visualisoi","mallinna","kommunikoi","automatisoi"),
-                                   se = c("import","exportera", "snyggt", "omvandla", "visualisera", "modell", "kommunicera", "automatisera"),
-                                   ru = c("импорт","экспорт", "аккуратная", "преобразование", "визуализация", "модель", "общаться", "автоматизировать"))
+    translate_domain <- data_frame(en = c("basics","import","export","tidy","transform","visualise","model","communicate","automate"),
+                                   fi = c("perusteet","tuo","vie","siivoa","muokkaa","visualisoi","mallinna","kommunikoi","automatisoi"),
+                                   se = c("grunderna","import","exportera", "snyggt", "omvandla", "visualisera", "modell", "kommunicera", "automatisera"),
+                                   ru = c("основы","импорт","экспорт", "аккуратная", "преобразование", "визуализация", "модель", "общаться", "автоматизировать"))
 
     output$i_domain <- renderUI({
 
@@ -60,16 +60,18 @@ create_assignment <- function() {
     output$i_question <- renderUI({
 
       q <- paste0("q_", input$o_lang)
+
+      ids <- raw_d[raw_d$domain %in% input$o_domain,][["id"]]
+      names(ids) <- raw_d[raw_d$id %in% ids,][[q]]
+
+
       checkboxGroupInput("o_question",
                 label = translate_title[[2, input$o_lang,]],
-                choices =  unique(raw_d[raw_d$domain %in% input$o_domain,][[q]]),
-                selected = unique(raw_d[raw_d$domain %in% input$o_domain,][[q]])[1], width = "98%")
+                choices =  ids,
+                selected = ids[1], width = "98%")
     })
 
     observeEvent(input$done, {
-
-      ids <- unique(raw_d[raw_d$domain %in% input$o_domain & raw_d$q_en %in% input$o_question,]$id)
-      qs <- unique(raw_d[raw_d$domain %in% input$o_domain & raw_d$q_en %in% input$o_question,]$q_en)
 
       yamlheader <- paste0("#' ---\n",
                            "#' title: ", translate_domain[translate_domain$en %in% input$o_domain, input$o_lang],"\n",
@@ -78,10 +80,14 @@ create_assignment <- function() {
                            "#' ---\n\n")
       rstudioapi::insertText(yamlheader)
 
+      ids <- input$o_question
+      ans <- raw_d[raw_d$id %in% ids, "ans"]
+      q <- paste0("q_", input$o_lang)
+
       for (i in 1:length(ids)){
 
         txt <- paste0("\n\n",
-                      "#' *",qs[i],"*\n",
+                      "#' *",raw_d[raw_d$id %in% ids[i],][[q]],"*\n",
                       "#' \n",
                       "#+ ", ids[i], ", eval = FALSE\n",
                       "replace_this_with_your_answer()",
@@ -89,6 +95,24 @@ create_assignment <- function() {
         rstudioapi::insertText(txt)
 
       }
+
+      rstudioapi::insertText("\n\n#' ********************************************\n#' # Correct answers \n#' ********************************************\n\n")
+
+      for (i in 1:length(ids)){
+
+        txt <- paste0("\n\n",
+                      "#' *",raw_d[raw_d$id %in% ids[i],][[q]],"*\n",
+                      "#' \n",
+                      "#+ ", ids[i], ", eval = FALSE\n",
+                      ans[i],
+                      "\n\n\n")
+        rstudioapi::insertText(txt)
+
+      }
+
+
+
+
         stopApp()
       })
 
