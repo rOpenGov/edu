@@ -13,7 +13,7 @@ devtools::install_github("muuankarski/edu")
 
 ## The gif
 
-![](http://software.markuskainu.fi/ropengov/edu/ropengov_edu.gif)
+<img src="http://software.markuskainu.fi/ropengov/edu/ropengov_edu.gif"/>
 
 
 
