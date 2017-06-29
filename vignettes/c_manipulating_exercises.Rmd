@@ -1,5 +1,5 @@
 ---
-title: "3. Manipulating exercises"
+title: "3. Manipulating the existing exercises and adding new ones"
 ---
 
 **Created:** `r Sys.time()`
@@ -8,7 +8,7 @@ title: "3. Manipulating exercises"
 library(knitr)
 knitr::opts_chunk$set(list(echo=TRUE,
                            eval=TRUE,
-                           cache=TRUE,
+                           cache=FALSE,
                            warning=FALSE,
                            message=FALSE))
 opts_chunk$set(fig.width = 10, fig.height = 10)
@@ -16,3 +16,68 @@ library(stringr)
 library(tidyverse)
 options("download.file.method"="curl")
 ```
+
+
+# Manipulating the existing exercises
+
+Corrections, translations and additions are more than welcome for existing exercises that reside as `yaml`-files in [`./data`](https://github.com/rOpenGov/edu/tree/master/data)-folder. Yaml-format was chosen as it is easy to manually type even through Github website.
+
+Each exercise block must contain, at minimum, the following fields
+
+```{bash, eval=FALSE}
+- id: create_character_vector
+  domain: basics
+  lang_en: "Create a character vector containing words `yksi` ja `kaksi`"
+  ans: c("yksi", "kaksi")
+```
+
+where, 
+
+- `id` must be a unique identifier for that exercise
+- `domain` must refer to the domain exercise is part of. For clarity each domain has been splitted into its own file!
+- `lang_en` the question in at least one language
+- `ans` the correct answer
+
+For multiple languages and altertive correct answers you can do for instance:
+
+
+```{bash, eval=FALSE}
+- id: data_structure_dataframe
+  domain: basics
+  lang_fi: "Luo data ydinasevaltioista, niiden presidenteistä/valtiopäämiehistä ja väestömäärästä (ks. https://en.wikipedia.org/wiki/List_of_states_with_nuclear_weapons)"
+  lang_en: "Create data of states with nuclear weapons, with presidents/heads of state and population (see https://en.wikipedia.org/wiki/List_of_states_with_nuclear_weapons)"
+  lang_se: "Skapa tabell över stater med kärnvapen, med presidenter och befolkning"
+  lang_ru: "Создать таблицу государств с ядерным оружием, с президентами и населением"
+  ans: |
+        data.frame(country = c('United States','Russian Federation','France','United Kingdom','China'),
+                    president = c('Donald Trump','Vladimir Putin','François Hollande','Elisabeth II','Xi Jinping'),
+                    population = c(1234,1234,1234,1234,1234),
+                    stringsAsFactors=FALSE)
+                    )
+        # Or
+        dplyr::data_frame(country = c('United States','Russian Federation','France','United Kingdom','China'),
+                    president = c('Donald Trump','Vladimir Putin','François Hollande','Elisabeth II','Xi Jinping'),
+                    population = c(1234,1234,1234,1234,1234))
+                    )
+        tibble::tribble(
+        # Or
+        ~country, ~president, ~population,
+        "United States","Donald Trump",1234,
+        "Russian Federation","Vladimir Putin",1234,
+        "United Kingdom","François Hollande",1234,
+        "France","Elisabeth II", 1234,
+        "China" ,"Xi Jinping", 1234
+        )
+```
+
+# Adding new exercises into existing domains
+
+You can add you exercises into existing domains just by following the guidelines above. Leave the final line empty in the yaml-file! Please make a pull request into Github if you think they would benefit someone else too!
+
+You must re-build the package to make the additions available.
+
+
+# Adding new domains with new exercises
+
+To make the most out of your R-courses it is good idea to create your own set of questions spesific to your domain or organisation. If you think they are useful for other, please make a pull request and we will incorporate them with the package. If they are tailored for your organisations internal it-environment its probably better to keep them private and out of the public repositories.
+

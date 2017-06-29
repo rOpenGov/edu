@@ -70,11 +70,47 @@
     
     
 <div class="contents">
-<p><strong>Created:</strong> 2017-06-29 12:11:35</p>
+<p><strong>Created:</strong> 2017-06-29 17:54:45</p>
+<div id="creating-an-assessment" class="section level1">
+<h1 class="hasAnchor">
+<a href="#creating-an-assessment" class="anchor"></a>Creating an assessment</h1>
+<p>Assuming that you have installed the <code>edu</code>-package and that you are happy with the current state of exercises provided by the yml-files in <code>data/</code>-folder, you can create a new assignment by:</p>
+<ol style="list-style-type: decimal">
+<li>creating a new R-script (<code>Ctrl+Shift+n</code>)</li>
+<li>selecting the <em>Create assignment</em> -addin from the <strong>Addins</strong> drop down menu</li>
+<li>picking the language</li>
+<li>picking the domain of your assignment, and</li>
+<li>individually picking the exercises by checking the boxes, and pressing <strong>Done</strong> in the end.</li>
+</ol>
+<p>Addin then prints a generic yaml-header and for each exercise</p>
+<ul>
+<li>question between asterixes in language you selected</li>
+<li>unique chunk id with <code>eval = FALSE</code>
+</li>
+<li>default answer <code>replace_this_with_your_answer()</code>
+</li>
+</ul>
+<p>Also, addin prints a first level heading <code>Correct answers</code> and repeats all the question with correct answers for own use. (Easier to assist the students when you have the correct answers at hand).</p>
+<p>Remove the correct answers (you can save them somewhere) and save the assignment with default answers into regular R-script with a good name, <code>basic_assignments.R</code></p>
+<p>See the gif-image below for the process:</p>
+<p><img src="http://software.markuskainu.fi/ropengov/edu/ropengov_edu.gif" width="600/"></p>
+</div>
+<div id="distributing-assignments" class="section level1">
+<h1 class="hasAnchor">
+<a href="#distributing-assignments" class="anchor"></a>Distributing assignments</h1>
+<p>There are several ways for distributing a R-script to your students. You can upload the file somewhere for students to download. If you have your students email addresses, packages like <a href="https://cran.r-project.org/web/packages/mailR/index.html">mailR</a> and <a href="https://cran.r-project.org/web/packages/sendmailR/index.html">sendmailR</a> can be used for sending mass emails with attachments.</p>
+</div>
 </div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
+        <div id="tocnav">
+      <h2>Contents</h2>
+      <ul class="nav nav-pills nav-stacked">
+<li><a href="#creating-an-assessment">Creating an assessment</a></li>
+      <li><a href="#distributing-assignments">Distributing assignments</a></li>
+      </ul>
+</div>
       </div>
 
 </div>

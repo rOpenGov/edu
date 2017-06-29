@@ -8,7 +8,7 @@ title: "1. Creating assignments"
 library(knitr)
 knitr::opts_chunk$set(list(echo=TRUE,
                            eval=TRUE,
-                           cache=TRUE,
+                           cache=FALSE,
                            warning=FALSE,
                            message=FALSE))
 opts_chunk$set(fig.width = 10, fig.height = 10)
@@ -16,3 +16,38 @@ library(stringr)
 library(tidyverse)
 options("download.file.method"="curl")
 ```
+
+
+# Creating an assessment
+
+Assuming that you have installed the `edu`-package and that you are happy with the current state of exercises provided by the yml-files in `data/`-folder, you can create a new assignment by:
+
+1. creating a new R-script (`Ctrl+Shift+n`)
+2. selecting the *Create assignment* -addin from the **Addins** drop down menu
+3. picking the language
+4. picking the domain of your assignment, and 
+5. individually picking the exercises by checking the boxes, and pressing **Done** in the end.
+
+Addin then prints a generic yaml-header and for each exercise
+
+- question between asterixes in language you selected
+- unique chunk id with `eval = FALSE`
+- default answer `replace_this_with_your_answer()`
+
+Also, addin prints a first level heading `Correct answers` and repeats all the question with correct answers for own use. (Easier to assist the students when you have the correct answers at hand).
+
+Remove the correct answers (you can save them somewhere) and save the assignment with default answers into regular R-script with a good name, `basic_assignments.R`
+
+
+See the gif-image below for the process:
+
+
+
+<img src="http://software.markuskainu.fi/ropengov/edu/ropengov_edu.gif" width = 600/>
+
+
+# Distributing assignments
+
+There are several ways for distributing a R-script to your students. You can upload the file somewhere for students to download. If you have your students email addresses, packages like [mailR](https://cran.r-project.org/web/packages/mailR/index.html) and [sendmailR](https://cran.r-project.org/web/packages/sendmailR/index.html) can be used for sending mass emails with attachments.
+
+

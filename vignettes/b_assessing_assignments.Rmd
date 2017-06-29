@@ -1,5 +1,5 @@
 ---
-title: "2. Assessing assingments"
+title: "2. Assessing assignments"
 ---
 
 **Created:** `r Sys.time()`
@@ -8,7 +8,7 @@ title: "2. Assessing assingments"
 library(knitr)
 knitr::opts_chunk$set(list(echo=TRUE,
                            eval=TRUE,
-                           cache=TRUE,
+                           cache=FALSE,
                            warning=FALSE,
                            message=FALSE))
 opts_chunk$set(fig.width = 10, fig.height = 10)
@@ -16,3 +16,37 @@ library(stringr)
 library(tidyverse)
 options("download.file.method"="curl")
 ```
+
+# Collecting the assignments
+
+Depending on the infrastructure there are various ways for collecting the completed assignments from the students. Email can be one or a folder on shared network drive. You can also ask students to push their assignments into Github or similar.
+
+# Processing the assignments
+
+Here we assume that you have gathered the assigments on **importing data** into a folder `~/rcourse/completed_assignments/import/` and each students assignment has a unique file name. The folder structure here is:
+
+```{bash, eval=FALSE}
+~
+└─── rcourse
+    |─── completed_assignments
+    |                      └───basics
+    |                      └───import
+    |                              └─── student_x_import.R
+    |                              └─── student_y_import.R
+    |                              └─── student_z_import.R
+    └─── assignment_summaries
+                        └─── summary_import.R
+```
+
+We could then call the function `process_assignments()` with following values for attributes in order to get the file  `~/rcourse/assignment_summaries/summary_import.R`.
+
+```{r, eval=FALSE}
+edu::process_assignments(path_assignments = "~/rcourse/completed_assignments/import/", 
+                         outfile_name = "summary_import", 
+                         outfile_path = "~/rcourse/assignment_summaries/")
+```
+
+
+# Distributing the summary
+
+Once the summary is processed, you can either distribute the resulting R-script or you can render it into a html-file using `rmarkdown::render()`. If you want chunk of answers to be evaluated, replace the `eval = FALSE` with `eval = TRUE`. But remember to review the answers before for any security concerns! 
