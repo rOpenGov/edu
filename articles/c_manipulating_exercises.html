@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>
 <ol start="3" style="list-style-type: decimal">
-<li>Manipulating exercises</li>
+<li>Manipulating the existing exercises and adding new ones</li>
 </ol> • edu</title>
 <!-- jquery --><script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/simplex/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script><!-- Font Awesome icons --><link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
@@ -62,7 +62,7 @@
   <div class="col-md-9">
     <div class="page-header toc-ignore">
       <h1><ol start="3" style="list-style-type: decimal">
-<li>Manipulating exercises</li>
+<li>Manipulating the existing exercises and adding new ones</li>
 </ol></h1>
             
           </div>
@@ -70,11 +70,78 @@
     
     
 <div class="contents">
-<p><strong>Created:</strong> 2017-06-29 12:11:38</p>
+<p><strong>Created:</strong> 2017-06-29 17:54:49</p>
+<div id="manipulating-the-existing-exercises" class="section level1">
+<h1 class="hasAnchor">
+<a href="#manipulating-the-existing-exercises" class="anchor"></a>Manipulating the existing exercises</h1>
+<p>Corrections, translations and additions are more than welcome for existing exercises that reside as <code>yaml</code>-files in <a href="https://github.com/rOpenGov/edu/tree/master/data"><code>./data</code></a>-folder. Yaml-format was chosen as it is easy to manually type even through Github website.</p>
+<p>Each exercise block must contain, at minimum, the following fields</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">-</span> id: create_character_vector
+  <span class="kw">domain</span>: basics
+  <span class="kw">lang_en</span>: <span class="st">"Create a character vector containing words </span><span class="kw">`yksi`</span><span class="st"> ja </span><span class="kw">`kaksi`</span><span class="st">"</span>
+  <span class="kw">ans</span>: c(<span class="st">"yksi"</span>, <span class="st">"kaksi"</span>)</code></pre></div>
+<p>where,</p>
+<ul>
+<li>
+<code>id</code> must be a unique identifier for that exercise</li>
+<li>
+<code>domain</code> must refer to the domain exercise is part of. For clarity each domain has been splitted into its own file!</li>
+<li>
+<code>lang_en</code> the question in at least one language</li>
+<li>
+<code>ans</code> the correct answer</li>
+</ul>
+<p>For multiple languages and altertive correct answers you can do for instance:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">-</span> id: data_structure_dataframe
+  <span class="kw">domain</span>: basics
+  <span class="kw">lang_fi</span>: <span class="st">"Luo data ydinasevaltioista, niiden presidenteistä/valtiopäämiehistä ja väestömäärästä (ks. https://en.wikipedia.org/wiki/List_of_states_with_nuclear_weapons)"</span>
+  <span class="kw">lang_en</span>: <span class="st">"Create data of states with nuclear weapons, with presidents/heads of state and population (see https://en.wikipedia.org/wiki/List_of_states_with_nuclear_weapons)"</span>
+  <span class="kw">lang_se</span>: <span class="st">"Skapa tabell över stater med kärnvapen, med presidenter och befolkning"</span>
+  <span class="kw">lang_ru</span>: <span class="st">"Создать таблицу государств с ядерным оружием, с президентами и населением"</span>
+  <span class="kw">ans</span>: <span class="kw">|</span>
+        <span class="kw">data.frame</span>(country = c(<span class="st">'United States'</span>,<span class="st">'Russian Federation'</span>,<span class="st">'France'</span>,<span class="st">'United Kingdom'</span>,<span class="st">'China'</span>),
+                    <span class="kw">president</span> = c(<span class="st">'Donald Trump'</span>,<span class="st">'Vladimir Putin'</span>,<span class="st">'François Hollande'</span>,<span class="st">'Elisabeth II'</span>,<span class="st">'Xi Jinping'</span>),
+                    <span class="kw">population</span> = c(1234,1234,1234,1234,1234),
+                    <span class="ot">stringsAsFactors=</span>FALSE)
+                    )
+        <span class="co"># Or</span>
+        <span class="kw">dplyr</span>::data_frame(country = c(<span class="st">'United States'</span>,<span class="st">'Russian Federation'</span>,<span class="st">'France'</span>,<span class="st">'United Kingdom'</span>,<span class="st">'China'</span>),
+                    <span class="kw">president</span> = c(<span class="st">'Donald Trump'</span>,<span class="st">'Vladimir Putin'</span>,<span class="st">'François Hollande'</span>,<span class="st">'Elisabeth II'</span>,<span class="st">'Xi Jinping'</span>),
+                    <span class="kw">population</span> = c(1234,1234,1234,1234,1234))
+                    )
+        <span class="kw">tibble</span>::tribble(
+        <span class="co"># Or</span>
+        <span class="kw">~country</span>, <span class="kw">~president</span>, <span class="kw">~population</span>,
+        <span class="st">"United States"</span>,<span class="st">"Donald Trump"</span>,<span class="kw">1234</span>,
+        <span class="st">"Russian Federation"</span>,<span class="st">"Vladimir Putin"</span>,<span class="kw">1234</span>,
+        <span class="st">"United Kingdom"</span>,<span class="st">"François Hollande"</span>,<span class="kw">1234</span>,
+        <span class="st">"France"</span>,<span class="st">"Elisabeth II"</span>, <span class="kw">1234</span>,
+        <span class="st">"China"</span> ,<span class="st">"Xi Jinping"</span>, <span class="kw">1234</span>
+        )</code></pre></div>
+</div>
+<div id="adding-new-exercises-into-existing-domains" class="section level1">
+<h1 class="hasAnchor">
+<a href="#adding-new-exercises-into-existing-domains" class="anchor"></a>Adding new exercises into existing domains</h1>
+<p>You can add you exercises into existing domains just by following the guidelines above. Leave the final line empty in the yaml-file! Please make a pull request into Github if you think they would benefit someone else too!</p>
+<p>You must re-build the package to make the additions available.</p>
+</div>
+<div id="adding-new-domains-with-new-exercises" class="section level1">
+<h1 class="hasAnchor">
+<a href="#adding-new-domains-with-new-exercises" class="anchor"></a>Adding new domains with new exercises</h1>
+<p>To make the most out of your R-courses it is good idea to create your own set of questions spesific to your domain or organisation. If you think they are useful for other, please make a pull request and we will incorporate them with the package. If they are tailored for your organisations internal it-environment its probably better to keep them private and out of the public repositories.</p>
+</div>
 </div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
+        <div id="tocnav">
+      <h2>Contents</h2>
+      <ul class="nav nav-pills nav-stacked">
+<li><a href="#manipulating-the-existing-exercises">Manipulating the existing exercises</a></li>
+      <li><a href="#adding-new-exercises-into-existing-domains">Adding new exercises into existing domains</a></li>
+      <li><a href="#adding-new-domains-with-new-exercises">Adding new domains with new exercises</a></li>
+      </ul>
+</div>
       </div>
 
 </div>
