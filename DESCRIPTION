@@ -1,12 +1,23 @@
 Package: edu
 Type: Package
-Title: What the Package Does (Title Case)
+Title: An open framework for creating and assessing exercises for R courses 
 Version: 0.1.0
-Author: Who wrote it
-Maintainer: The package maintainer <yourself@somewhere.net>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
-License: What license is it under?
+Authors@R: c(
+    person("Kainu", "Markus", , "markus.kainu@kela.fi", role = c("aut", "cre")),
+    person("ropengov", role = c("cph","fnd"))
+    )
+Maintainer: Markus Kainu <markus.kainu@gmail.com>
+Description: This packages provides an Rstudio addin for creating assignments for students with simple R exercises.
+             You can use the pre-existing exercises covering multiple themes or you can easily create your own spesific to your organization.
+             In addition to creating assignments, there is also simple script for processing the completed assignments collected from students 
+             into a single script accompanied with the correct answers. 
+Imports:
+      plyr,
+      dplyr,
+      yaml,
+      miniUI,
+      shiny
+License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 6.0.1
