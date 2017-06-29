@@ -21,7 +21,6 @@ create_assignment <- function() {
     require(dplyr)
     # scan assignments
     assign_ymls <- list.files(system.file(package = "edu", ... = "data/"),pattern = ".yml", full.names = TRUE)
-
     all_assignments <- data_frame()
     for (i in assign_ymls){
       tmp <- yaml::yaml.load_file(i)

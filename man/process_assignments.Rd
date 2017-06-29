@@ -4,12 +4,17 @@
 \alias{process_assignments}
 \title{Process assignments create with edu and completed by students}
 \usage{
-process_assignments(path, outfile)
+
+  process_assignments(path_assignments = "~/btsync/workspace/ropengov/edutest/basics",
+  outfile_name = "basics_summary",
+  outfile_path = "~/btsync/workspace/ropengov/edutest/")
 }
 \arguments{
-\item{outfile}{Name of the the output}
+\item{path_assignments}{Absolute path to the folder containing the completed assignments as R.scripts ending either with .R or .r}
 
-\item{folder}{Absolute path to the folder containing the completed assignments as R.scripts ending either with .R or .r}
+\item{outfile_name}{Name of the the output script}
+
+\item{outfile_path}{Absolute path to the folder where scipt should be written}
 }
 \value{
 A R-script
@@ -19,7 +24,9 @@ Function processes number of completed assignments and outputs a single R-script
 }
 \examples{
  \dontrun{
- process_assignments(path = "~/rcourse/exercises/import/", outfile = "import_summary")
+ process_assignments(path_assignments = "~/btsync/workspace/ropengov/edutest/basics",
+                   outfile_name = "basics_summary",
+                   outfile_path = "~/btsync/workspace/ropengov/edutest/")
  }
 
 }

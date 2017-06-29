@@ -9,7 +9,6 @@ In addition to creating assignments, there is also simple script for processing 
 
 You can use the pre-existing exercises covering multiple themes or you can easily create your own spesific to your organization. Package also has a simple support for different languages. See vignette: [manipulating exercises](https://ropengov.github.io/edu/articles/c_manipulating_exercises.html)
 
-
 **Install**
 
 ```r
