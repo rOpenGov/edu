@@ -47,6 +47,13 @@ edu::process_assignments(path_assignments = "~/rcourse/completed_assignments/imp
 ```
 
 
+See the gif-image below for the process:
+
+
+
+<img src="http://software.markuskainu.fi/ropengov/edu/ropengov_edu_assess.gif" width = 600/>
+
+
 # Distributing the summary
 
 Once the summary is processed, you can either distribute the resulting R-script or you can render it into a html-file using `rmarkdown::render()`. If you want chunk of answers to be evaluated, replace the `eval = FALSE` with `eval = TRUE`. But remember to review the answers before for any security concerns! 
