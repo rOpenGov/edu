@@ -13,7 +13,9 @@ You can use the pre-existing exercises covering multiple themes or you can easil
 devtools::install_github("ropengov/edu")
 ```
 
-![**Check this gif!**](http://software.markuskainu.fi/ropengov/edu/ropengov_edu.gif)
+**Check this gif!**
+
+<img src="http://software.markuskainu.fi/ropengov/edu/ropengov_edu.gif" width = 800/>
 
 
 
