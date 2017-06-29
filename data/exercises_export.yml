@@ -1,0 +1,10 @@
+# Export exercises
+- id: write_csv_data
+  domain: export
+  lang_fi: "Miten lataa datasetin `pensions` sivulta: https://vincentarelbundock.github.io/Rdatasets/datasets.html"
+  lang_en: "How to write dataset `pensions` from page: https://vincentarelbundock.github.io/Rdatasets/datasets.html"
+  lang_se: "Hur man laddar ner dataset `pensions` från: https://vincentarelbundock.github.io/Rdatasets/datasets.html"
+  lang_ru: "Как загрузить набор данных `pensions` из: https://vincentarelbundock.github.io/Rdatasets/datasets.html"
+  ans: |
+      read.csv('https://vincentarelbundock.github.io/Rdatasets/csv/robustbase/pension.csv', stringsAsFactors=FALSE)
+      readr::read_csv('https://vincentarelbundock.github.io/Rdatasets/csv/robustbase/pension.csv')

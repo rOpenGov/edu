@@ -1,0 +1,59 @@
+# Import exercises
+- id: import_csv_data_from_url
+  domain: import
+  lang_fi: "Miten tuot datasetin `pensions` R:ään sivulta: https://vincentarelbundock.github.io/Rdatasets/datasets.html "
+  lang_en: "How to import dataset `pensions` from page: https://vincentarelbundock.github.io/Rdatasets/datasets.html "
+  ans: |
+       read.csv('https://vincentarelbundock.github.io/Rdatasets/csv/robustbase/pension.csv', stringsAsFactors=FALSE)
+       # Or
+       readr::read_csv('https://vincentarelbundock.github.io/Rdatasets/csv/robustbase/pension.csv')
+- id: import_download_csv_data_from_url_and_read
+  domain: import
+  lang_fi: "Miten lataat ja tallennat datasetin `pensions` kansioon `data` sivulta: https://vincentarelbundock.github.io/Rdatasets/datasets.html ja luet sen  R:ään"
+  lang_en: "How download and save dataset `pensions` into folder `data` from page: https://vincentarelbundock.github.io/Rdatasets/datasets.html and to read into R"
+  ans: |
+       dir.create("./aineistot")
+       download.file(url = "https://vincentarelbundock.github.io/Rdatasets/csv/plm/Males.csv", destfile = "./aineistot/males.csv")
+       read.csv("./aineistot/males.csv", header = TRUE, stringsAsFactors = FALSE)
+- id: import_csv_data_from_url_2
+  domain: import
+  lang_fi: "Lataa sivulta: http://vincentarelbundock.github.io/Rdatasets/datasets.html data `Marriage` ja selvitä mikä on suurin aikaisempien avioliittojen määrä aineiston henkilöillä"
+  lang_en: "Download data `Marriage` from http://vincentarelbundock.github.io/Rdatasets/datasets.html and find out the maximum number of previous marriages in the data"
+  ans: |
+       marrdata <- read.csv("http://vincentarelbundock.github.io/Rdatasets/csv/mosaicData/Marriage.csv", stringsAsFactors = FALSE)
+       max(marrdata$prevcount)
+- id: import_haven_stata
+  domain: import
+  lang_fi: "Lataa 'Life in Transition II' aineisto sivulta: http://www.ebrd.com/news/publications/special-reports/life-in-transition-survey-ii.html. Kuinka monta riviä aineistossa on?"
+  lang_en: "Download 'Life in Transition II' data from http://www.ebrd.com/news/publications/special-reports/life-in-transition-survey-ii.html. How many rows does the data contain?"
+  ans: |
+       download.file(url = "http://www.ebrd.com/downloads/research/surveys/lits2.dta", "./lits2.dta", mode = "wb")
+       lits <- haven::read_dta("./lits2.dta")
+       nrow(lits)
+- id: import_excel_wb_gini
+  domain: import
+  lang_fi: "Maailmanpankki ylläpitää ekseliä, johon on koottu taloudellista eriarvoisuutta kuvaavan gini-indeksin arvoja eri maista eri tutkimusprojekteista. Ekseli sijaitsee täällä: http://siteresources.worldbank.org/INTRES/Resources/469232-1107449512766/allginis_2013.xls -  miten luet sen R:ään?"
+  lang_en: "World Bank mainstans an excel file that contains gini inequality indices from different research projects from different countries in here: http://siteresources.worldbank.org/INTRES/Resources/469232-1107449512766/allginis_2013.xls -  how do you read that into R?"
+  ans: |
+       download.file("http://siteresources.worldbank.org/INTRES/Resources/469232-1107449512766/allginis_2013.xls",
+              "./allginis_2013.xls", mode="wb")
+       d <- readxl::read_excel("./allginis_2013.xls")
+- id: import_excel_random
+  domain: import
+  lang_fi: "Laita joku excel-tiedosto johonkin paikkaan internetissä ja kirjoita alle koodi, jolla jokainen voi sen ladata sen R:ään"
+  lang_en: "Upload an excel file into some location in internet and provide a code that everyone can use to download it into R"
+  ans: |
+       download.file(url = "http://www.randomsite.com/file.xlsx", "./file.xlsx", mode = "wb")
+       df <- readxl::read_excel("./file.xlsx")
+- id: import_api_pxweb
+  domain: import
+  lang_fi: "Miten saan pxweb-paketilla Tilastokeskuksesta suomenkielisen taulukon kuntien vuoden 2016 avainluvuista siivottuna Akaan kunnasta Alle 15-vuotiaiden osuuden väestöstä"
+  lang_en: "Miten saan pxweb-paketilla Tilastokeskuksesta suomenkielisen taulukon kuntien vuoden 2016 avainluvuista siivottuna Akaan kunnasta Alle 15-vuotiaiden osuuden väestöstä"
+  ans: d <- pxweb::interactive_pxweb()
+- id: import_api_eurostat
+  domain: import
+  lang_fi: "Eurostatin tilastotietokannassa on dataa mm. kotitalouksien tuloista. Miten haet R:ään jonkun kotitalouksien tuloja kuvaavan datan `eurostat`-paketilla?"
+  lang_en: "Eurostat has data for instance on household incomes. How can you import some dataset desrcibing household incomes into R using `eurostat`-package?"
+  ans: |
+       eurostat::search_eurostat(pattern = "household income")
+       eurostat::get_eurostat(id = "tour_dem_ttinc")
