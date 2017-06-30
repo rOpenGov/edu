@@ -76,7 +76,7 @@ process_assignments <- function(path_assignments = "~/btsync/workspace/ropengov/
       # In the case of last question and end of question will be set and the last line of assignment
       if (i == length(question_lines)){
         index_end <- length(tmplines)
-      } else index_end <- match(chunk_title_lines[i+1], tmplines)
+      } else index_end <- match(question_lines[i+1], tmplines)
       answer_lines <- tmplines[index_begin:index_end]
       answer_lines <- answer_lines[!grepl("^#\\+ |#'", answer_lines)]
       answer_lines <- answer_lines[nchar(answer_lines) > 0]

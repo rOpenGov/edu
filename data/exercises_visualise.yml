@@ -1,0 +1,10 @@
+- id: ggplot2_geomscatter
+  domain: model
+  lang_en: "`dplyr`-package contains data `storms`. Each storms has data on multiple rows from multiple measurement points. Create a scatterplot with air pressure on x-axis and wind speed on y-axis."
+  lang_fi: "`dplyr`-paketti sisältää datan `storms`. Kullekin myrskylle on datassa useita rivejä useasta mittausajankohdasta. Tee hajontakuvio, jossa ilmanpainen on x-akselilla ja tuulennopeus y-akselilla"
+  ans: ggplot(storms, aes(x=pressure,y=wind)) + geom_point()
+- id: ggplot2_geomscatter_color
+  domain: visualise
+  lang_en: "`dplyr`-package contains data `storms`. Each storms has data on multiple rows from multiple measurement points. Create a scatterplot with air pressure on x-axis and wind speed on y-axis. Color the dots by the storm name"
+  lang_fi: "`dplyr`-paketti sisältää datan `storms`. Kullekin myrskylle on datassa useita rivejä useasta mittausajankohdasta. Tee hajontakuvio, jossa ilmanpainen on x-akselilla ja tuulennopeus y-akselilla. Anna pisteille värin myrskyn nimen mukaan."
+  ans: ggplot(storms, aes(x=pressure,y=wind, color = name)) + geom_point()

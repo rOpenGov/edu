@@ -1,0 +1,22 @@
+- id: select_minus
+  domain: tidy
+  lang_en: "`dplyr`-package contains data `storms`. Select all variables from data but `name`"
+  lang_fi: "`dplyr`-paketti sisältää datan `storms`. Valitse datasta kaikki muut muuttujat paitsi `name`"
+  ans: select(storms, -name)
+- id: select_contain
+  domain: tidy
+  lang_en: "`dplyr`-package contains data `storms` and a function `contains()`. Use that function to select all variables that contain character `t`"
+  lang_fi: "`dplyr`-paketti sisältää datan `storms` sekä funktion `contains()`. Käytä sitä ja valitse ainoastaan muuttujat joiden nimessä on kirjain `t`"
+  ans: select(storms, contains("t"))
+- id: filter_numeric
+  domain: tidy
+  lang_en: "`dplyr`-package contains data `storms`. Subset the rows from data that have windspeed equal or higher than 50"
+  lang_fi: "`dplyr`-paketti sisältää datan `storms`. Valitse datasta rivit, joilla tuulennopeus on ollut yhtäsuuri tai yli 50"
+  ans: filter(storms, wind >= 50)
+- id: filter_numeric_character
+  domain: tidy
+  lang_en: "`dplyr`-package contains data `storms`. Subset the rivit from data that had windspeed equal or higher than 50 AND whose name is either Alex or Marily"
+  lang_fi: "`dplyr`-paketti sisältää datan `storms`. Valitse datasta rivit, joilla tuulennopeus on ollut yhtäsuuri tai yli 50 JA jonka nimi on ollut Alex tai Marilyn"
+  ans: filter(storms, wind >= 50, name %in% c("Alex","Marilyn"))
+
+

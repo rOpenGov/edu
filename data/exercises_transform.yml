@@ -1,0 +1,10 @@
+- id: summarise_groupby
+  domain: transform
+  lang_en: "`dplyr`-package contains data `storms`. Each storms has data on multiple rows from multiple measurement points. How can you get the mean wind speed of each storm?"
+  lang_fi: "`dplyr`-paketti sisältää datan `storms`. Kullekin myrskylle on datassa useita rivejä useasta mittausajankohdasta. Miten saat kunkin myrskyn tuulennopeuden keskiarvon"
+  ans: storms %>% group_by(name) %>% summarise(wind = mean(wind))
+- id: summarise_count
+  domain: transform
+  lang_en: "`dplyr`-package contains data `storms`. Each storms has data on multiple rows from multiple measurement points. How many measurement points each storms has in the data?"
+  lang_fi: "`dplyr`-paketti sisältää datan `storms`. Kullekin myrskylle on datassa useita rivejä useasta mittausajankohdasta. Kuinka monta mittausajankohtaa kullakin myrskyllä on?"
+  ans: storms %>% count(name) %>% arrange(desc(n))

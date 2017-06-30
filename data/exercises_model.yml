@@ -1,0 +1,5 @@
+- id: linear_ols
+  domain: model
+  lang_en: "`dplyr`-package contains data `storms`. Fit a linear model to predict the wind speed with air pressure and hour of measurement"
+  lang_fi: "`dplyr`-paketti sisältää datan `storms`. Sovita lineaarinen regression jolla ennusta tuulennopeutta ilmanpaineen ja mittausajankohdan tunnin perusteella"
+  ans: lm(wind ~ pressure + hour, data = storms)

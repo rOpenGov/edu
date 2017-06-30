@@ -93,6 +93,7 @@ create_assignment <- function() {
         txt <- paste0("\n\n",
                       "#' *",i,". ",all_assignments[all_assignments$id %in% ids[i],][[lang_ver]],"*\n",
                       "#' \n",
+                      "#' \n",all_assignments[all_assignments$id %in% ids[i],][["extra"]],"\n#' \n",
                       "#+ ", ids[i], ", eval = FALSE\n",
                       "replace_this_with_your_answer()",
                       "\n\n\n")
