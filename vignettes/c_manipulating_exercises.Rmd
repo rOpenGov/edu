@@ -94,6 +94,8 @@ To add a new domain with exercises just create a new `yaml`-file in `/data` fold
   lang_nl: "Hoe wordt de R uitgeschakeld?"
   lang_de: "Wie man den R herunterfahren kann?"
   ans: q()
+
+
 ```
 
 Once you re-build the package the new domain with new exercises is as your disposal!
