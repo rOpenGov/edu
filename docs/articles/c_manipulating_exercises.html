@@ -70,7 +70,7 @@
     
     
 <div class="contents">
-<p><strong>Created:</strong> 2017-06-29 18:09:03</p>
+<p><strong>Created:</strong> 2017-06-30 08:21:55</p>
 <div id="manipulating-the-existing-exercises" class="section level1">
 <h1 class="hasAnchor">
 <a href="#manipulating-the-existing-exercises" class="anchor"></a>Manipulating the existing exercises</h1>
@@ -129,6 +129,18 @@
 <h1 class="hasAnchor">
 <a href="#adding-new-domains-with-new-exercises" class="anchor"></a>Adding new domains with new exercises</h1>
 <p>To make the most out of your R-courses it is good idea to create your own set of questions spesific to your domain or organisation. If you think they are useful for other, please make a pull request and we will incorporate them with the package. If they are tailored for your organisations internal it-environment its probably better to keep them private and out of the public repositories.</p>
+<p>To add a new domain with exercises just create a new <code>yaml</code>-file in <code>/data</code> folder and fill in the content in yaml-format such as:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">-</span> id: unique_id_for_this_particular_exercise
+  <span class="kw">domain</span>: my_new_domain
+  <span class="kw">lang_en</span>: <span class="st">"How to shutdown R?"</span>
+  <span class="kw">lang_fi</span>: <span class="st">"Miten sammuttaa R?"</span>
+  <span class="kw">lang_se</span>: <span class="st">"Hur stänger du av R?"</span>
+  <span class="kw">lang_ru</span>: <span class="st">"Как выключить R?"</span>
+  <span class="kw">lang_fr</span>: <span class="st">"Comment arrêter R?"</span>
+  <span class="kw">lang_nl</span>: <span class="st">"Hoe wordt de R uitgeschakeld?"</span>
+  <span class="kw">lang_de</span>: <span class="st">"Wie man den R herunterfahren kann?"</span>
+  <span class="kw">ans</span>: q()</code></pre></div>
+<p>Once you re-build the package the new domain with new exercises is as your disposal!</p>
 </div>
 </div>
   </div>

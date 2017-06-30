@@ -83,7 +83,7 @@ To make the most out of your R-courses it is good idea to create your own set of
 
 To add a new domain with exercises just create a new `yaml`-file in `/data` folder and fill in the content in yaml-format such as:
 
-```{bash, eval = TRUE}
+```{bash, eval = FALSE}
 - id: unique_id_for_this_particular_exercise
   domain: my_new_domain
   lang_en: "How to shutdown R?"
