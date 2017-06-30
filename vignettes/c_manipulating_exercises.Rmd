@@ -81,3 +81,21 @@ You must re-build the package to make the additions available.
 
 To make the most out of your R-courses it is good idea to create your own set of questions spesific to your domain or organisation. If you think they are useful for other, please make a pull request and we will incorporate them with the package. If they are tailored for your organisations internal it-environment its probably better to keep them private and out of the public repositories.
 
+To add a new domain with exercises just create a new `yaml`-file in `/data` folder and fill in the content in yaml-format such as:
+
+```{bash, eval = TRUE}
+- id: unique_id_for_this_particular_exercise
+  domain: my_new_domain
+  lang_en: "How to shutdown R?"
+  lang_fi: "Miten sammuttaa R?"
+  lang_se: "Hur stänger du av R?"
+  lang_ru: "Как выключить R?"
+  lang_fr: "Comment arrêter R?"
+  lang_nl: "Hoe wordt de R uitgeschakeld?"
+  lang_de: "Wie man den R herunterfahren kann?"
+  ans: q()
+```
+
+Once you re-build the package the new domain with new exercises is as your disposal!
+
+
