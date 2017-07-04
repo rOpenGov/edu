@@ -1,6 +1,0 @@
-# Kela database exercises
-- id: kela_db_connect
-  domain: kela database
-  lang_en: "How to create a connection"
-  ans: |
-      DBI::dbConnect(..)

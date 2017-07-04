@@ -1,6 +1,7 @@
 # Basics assignments
 - id: create_numeric_vector
   domain: basics
+  grade: easy
   lang_fi: "Miten luot numeerisen vektorin, jossa luvut 1 ja 2"
   lang_en: "Create a numeric vector containing numbers 1 and 2"
   ans: |

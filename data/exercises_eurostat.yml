@@ -1,0 +1,6 @@
+- id: eurostat
+  domain: eurostat-package
+  lang_en: "How to search for indicators on `unemployment` using `eurostat´-package"
+  lang_fi: "Miten löydät työttömyyttä koskevia indikaattoreita käyttäen ´eurostat´-pakettia"
+  ans: eurostat::search_eurostat(pattern = "unemployment")
+

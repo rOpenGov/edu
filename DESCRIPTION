@@ -1,7 +1,7 @@
 Package: edu
 Type: Package
 Title: An open framework for creating and assessing exercises for R courses 
-Version: 0.1.0
+Version: 0.1.0001
 Authors@R: c(
     person("Kainu", "Markus", , "markus.kainu@kela.fi", role = c("aut", "cre")),
     person("ropengov", role = c("cph","fnd"))
