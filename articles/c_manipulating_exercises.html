@@ -70,7 +70,7 @@
     
     
 <div class="contents">
-<p><strong>Created:</strong> 2017-06-30 16:30:55</p>
+<p><strong>Created:</strong> 2017-07-04 14:35:42</p>
 <div id="manipulating-the-existing-exercises" class="section level1">
 <h1 class="hasAnchor">
 <a href="#manipulating-the-existing-exercises" class="anchor"></a>Manipulating the existing exercises</h1>
@@ -81,23 +81,67 @@
   <span class="kw">lang_en</span>: <span class="st">"Create a character vector containing words </span><span class="kw">`yksi`</span><span class="st"> ja </span><span class="kw">`kaksi`</span><span class="st">"</span>
   <span class="kw">ans</span>: c(<span class="st">"yksi"</span>, <span class="st">"kaksi"</span>)</code></pre></div>
 <p>where,</p>
-<ul>
-<li>
-<code>id</code> must be a unique identifier for that exercise</li>
-<li>
-<code>domain</code> must refer to the domain exercise is part of. For clarity each domain has been splitted into its own file!</li>
-<li>
-<code>lang_en</code> the question in at least one language</li>
-<li>
-<code>ans</code> the correct answer</li>
-</ul>
+<table style="width:81%;" class="table">
+<colgroup>
+<col width="5%">
+<col width="48%">
+<col width="26%">
+</colgroup>
+<thead><tr class="header">
+<th>col</th>
+<th>description</th>
+<th>optional</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td><code>id</code></td>
+<td>must be a unique identifier for that exercise</td>
+<td>required</td>
+</tr>
+<tr class="even">
+<td><code>domain</code></td>
+<td>must refer to the domain exercise is part of. For clarity each domain has been splitted into its own file!</td>
+<td>required</td>
+</tr>
+<tr class="odd">
+<td><code>grade</code></td>
+<td>a qualitative description of how challenging the exercise is like <code>easy</code>, <code>moderate</code> or <code>difficult</code>
+</td>
+<td>optional</td>
+</tr>
+<tr class="even">
+<td><code>lang_en</code></td>
+<td>the question in at least one language</td>
+<td>at least one language required</td>
+</tr>
+<tr class="odd">
+<td><code>extra</code></td>
+<td>Some extra notation for the particular exercise, for instance a preformatted table of how the output should look like.</td>
+<td>optional</td>
+</tr>
+<tr class="even">
+<td><code>ans</code></td>
+<td>the correct answer</td>
+<td>required</td>
+</tr>
+</tbody>
+</table>
 <p>For multiple languages and altertive correct answers you can do for instance:</p>
 <div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">-</span> id: data_structure_dataframe
   <span class="kw">domain</span>: basics
+  <span class="kw">grade</span>: easy
   <span class="kw">lang_fi</span>: <span class="st">"Luo data ydinasevaltioista, niiden presidenteistä/valtiopäämiehistä ja väestömäärästä (ks. https://en.wikipedia.org/wiki/List_of_states_with_nuclear_weapons)"</span>
   <span class="kw">lang_en</span>: <span class="st">"Create data of states with nuclear weapons, with presidents/heads of state and population (see https://en.wikipedia.org/wiki/List_of_states_with_nuclear_weapons)"</span>
   <span class="kw">lang_se</span>: <span class="st">"Skapa tabell över stater med kärnvapen, med presidenter och befolkning"</span>
   <span class="kw">lang_ru</span>: <span class="st">"Создать таблицу государств с ядерным оружием, с президентами и населением"</span>
+  <span class="kw">extra</span>: <span class="kw">|</span>
+        <span class="co">## Data should look like this!</span>
+        <span class="co">##             country         president population</span>
+        <span class="co">## 1      United States      Donald Trump       1234</span>
+        <span class="co">## 2 Russian Federation    Vladimir Putin       1234</span>
+        <span class="co">## 3             France François Hollande       1234</span>
+        <span class="co">## 4     United Kingdom      Elisabeth II       1234</span>
+        <span class="co">## 5              China        Xi Jinping       1234</span>
   <span class="kw">ans</span>: <span class="kw">|</span>
         <span class="kw">data.frame</span>(country = c(<span class="st">'United States'</span>,<span class="st">'Russian Federation'</span>,<span class="st">'France'</span>,<span class="st">'United Kingdom'</span>,<span class="st">'China'</span>),
                     <span class="kw">president</span> = c(<span class="st">'Donald Trump'</span>,<span class="st">'Vladimir Putin'</span>,<span class="st">'François Hollande'</span>,<span class="st">'Elisabeth II'</span>,<span class="st">'Xi Jinping'</span>),
@@ -132,6 +176,7 @@
 <p>To add a new domain with exercises just create a new <code>yaml</code>-file in <code>/data</code> folder and fill in the content in yaml-format such as:</p>
 <div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">-</span> id: unique_id_for_this_particular_exercise
   <span class="kw">domain</span>: my_new_domain
+  <span class="kw">grade</span>: easy
   <span class="kw">lang_en</span>: <span class="st">"How to shutdown R?"</span>
   <span class="kw">lang_fi</span>: <span class="st">"Miten sammuttaa R?"</span>
   <span class="kw">lang_se</span>: <span class="st">"Hur stänger du av R?"</span>
