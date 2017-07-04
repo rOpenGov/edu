@@ -7,7 +7,7 @@ title: "3. Manipulating the existing exercises and adding new ones"
 ```{r setup, include = F}
 library(knitr)
 knitr::opts_chunk$set(list(echo=TRUE,
-                           eval=TRUE,
+                           eval=FALSE,
                            cache=FALSE,
                            warning=FALSE,
                            message=FALSE))
@@ -33,21 +33,33 @@ Each exercise block must contain, at minimum, the following fields
 
 where, 
 
-- `id` must be a unique identifier for that exercise
-- `domain` must refer to the domain exercise is part of. For clarity each domain has been splitted into its own file!
-- `lang_en` the question in at least one language
-- `ans` the correct answer
+| col | description | optional |
+| --- | ----------  | -------  |
+| `id` | must be a unique identifier for that exercise | required |
+| `domain` | must refer to the domain exercise is part of. For clarity each domain has been splitted into its own file! | required |
+| `grade` | a qualitative description of how challenging the exercise is like `easy`, `moderate` or `difficult`  | optional |
+| `lang_en` | the question in at least one language | at least one language required | 
+| `extra` | Some extra notation for the particular exercise, for instance a preformatted table of how the output should look like. | optional |
+| `ans` | the correct answer | required |
 
 For multiple languages and altertive correct answers you can do for instance:
-
 
 ```{bash, eval=FALSE}
 - id: data_structure_dataframe
   domain: basics
+  grade: easy
   lang_fi: "Luo data ydinasevaltioista, niiden presidenteistä/valtiopäämiehistä ja väestömäärästä (ks. https://en.wikipedia.org/wiki/List_of_states_with_nuclear_weapons)"
   lang_en: "Create data of states with nuclear weapons, with presidents/heads of state and population (see https://en.wikipedia.org/wiki/List_of_states_with_nuclear_weapons)"
   lang_se: "Skapa tabell över stater med kärnvapen, med presidenter och befolkning"
   lang_ru: "Создать таблицу государств с ядерным оружием, с президентами и населением"
+  extra: |
+        ## Data should look like this!
+        ##             country         president population
+        ## 1      United States      Donald Trump       1234
+        ## 2 Russian Federation    Vladimir Putin       1234
+        ## 3             France François Hollande       1234
+        ## 4     United Kingdom      Elisabeth II       1234
+        ## 5              China        Xi Jinping       1234
   ans: |
         data.frame(country = c('United States','Russian Federation','France','United Kingdom','China'),
                     president = c('Donald Trump','Vladimir Putin','François Hollande','Elisabeth II','Xi Jinping'),
@@ -86,6 +98,7 @@ To add a new domain with exercises just create a new `yaml`-file in `/data` fold
 ```{bash, eval = FALSE}
 - id: unique_id_for_this_particular_exercise
   domain: my_new_domain
+  grade: easy
   lang_en: "How to shutdown R?"
   lang_fi: "Miten sammuttaa R?"
   lang_se: "Hur stänger du av R?"

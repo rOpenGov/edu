@@ -8,6 +8,8 @@ create_assignment <- function() {
     miniContentPanel(
       fillRow(flex = c(7, 3), height = "60px",
               uiOutput("i_lang")),
+      fillRow(flex = c(7, 3), height = "60px",
+              textInput(inputId = "o_title", label = "Assignment title", placeholder = "type your title here!")),
     fillRow(flex = c(7, 3), height = "60px",
             uiOutput("i_domain")),
       fillRow(flex = c(7, 3), height = "60px",
@@ -43,12 +45,13 @@ create_assignment <- function() {
 
       domains <- unique(all_assignments$domain)
 
-      radioButtons("o_domain",
-                label = "Select domain",
+      selectInput("o_domain",
+                label = "Select domains",
                 choices =  domains,
                 selected = domains[1],
-                inline = TRUE,
-                width = "98%")
+                # inline = TRUE,
+                multiple = TRUE,
+                selectize = TRUE)
     })
 
     output$i_exercise <- renderUI({
@@ -59,7 +62,11 @@ create_assignment <- function() {
       # Replace all non-translated exercise + language pairs with text "Translation not available"
       exercises <- all_assignments[all_assignments$id %in% ids,][[lang_ver]]
       exercises <- ifelse(is.na(exercises), "Translation not available", exercises)
-      names(ids) <- exercises
+      domains <- all_assignments[all_assignments$id %in% ids,][["domain"]]
+      grades <- all_assignments[all_assignments$id %in% ids,][["grade"]]
+      grades <- ifelse(is.na(grades), "not graded", grades)
+
+      names(ids) <- paste0(domains,": '",grades, "' " , exercises)
 
 
       checkboxGroupInput("o_exercise",
@@ -71,8 +78,8 @@ create_assignment <- function() {
     observeEvent(input$done, {
 
       yamlheader <- paste0("#' ---\n",
-                           "#' title: ", input$o_domain,"\n",
-                           "#' author: ",Sys.info()[['user']],"\n",
+                           "#' title: ", input$o_title,"\n",
+      #                     "#' author: ",Sys.info()[['user']],"\n",
                            "#' date: '`r Sys.time()`'\n",
                            "#' output:\n",
                            "#'   html_document:\n",
@@ -82,38 +89,66 @@ create_assignment <- function() {
                            "#'     number_sections: yes\n",
                            "#'     code_folding: show\n",
                            "#' ---\n\n",
-                           "#' # Exercises\n\n")
+                            # "#' # Exercises\n\n",
+                           "#' \n\n")
       rstudioapi::insertText(yamlheader)
 
-      ids <- input$o_exercise
-      lang_ver <- paste0("lang_", input$o_lang)
 
-      for (i in 1:length(ids)){
+
+      # Which domains the assignments come from
+      domains <- unique(all_assignments[all_assignments$id %in% input$o_exercise,][["domain"]])
+
+      for (dom in 1:length(domains)){
+
+        ids <- all_assignments[all_assignments$domain %in% domains[dom] & all_assignments$id %in% input$o_exercise,][["id"]]
+        lang_ver <- paste0("lang_", input$o_lang)
 
         txt <- paste0("\n\n",
-                      "#' *",i,". ",all_assignments[all_assignments$id %in% ids[i],][[lang_ver]],"*\n",
-                      "#' \n",
-                      "#' \n",all_assignments[all_assignments$id %in% ids[i],][["extra"]],"\n#' \n",
-                      "#+ ", ids[i], ", eval = FALSE\n",
-                      "replace_this_with_your_answer()",
-                      "\n\n\n")
+                      "#' # ",domains[dom],"\n",
+                      "#' \n\n")
         rstudioapi::insertText(txt)
 
+        for (i in 1:length(ids)){
+
+          txt <- paste0("\n\n",
+                        "#' *",dom,".",i,". ",all_assignments[all_assignments$id %in% ids[i],][[lang_ver]],"*\n",
+                        "#' \n",
+                        "#' \n",all_assignments[all_assignments$id %in% ids[i],][["extra"]],"\n#' \n",
+                        "#+ ", ids[i], ", eval = FALSE\n",
+                        "default_answer()",
+                        "\n\n\n")
+          rstudioapi::insertText(txt)
+
+        }
       }
 
       # Print the correct answers
-      rstudioapi::insertText("\n\n#' ********************************************\n#' # Correct answers\n\n")
+      rstudioapi::insertText("\n\n#' ********************************************\n#' ")
+
+
+      domains <- unique(all_assignments[all_assignments$id %in% input$o_exercise,][["domain"]])
+
+      for (dom in 1:length(domains)){
+
+        ids <- all_assignments[all_assignments$domain %in% domains[dom] & all_assignments$id %in% input$o_exercise,][["id"]]
+        lang_ver <- paste0("lang_", input$o_lang)
+
+        txt <- paste0("\n\n",
+                      "#' # Correct answers: ",domains[dom],"\n",
+                      "#' \n\n")
+        rstudioapi::insertText(txt)
 
       for (i in 1:length(ids)){
 
         txt <- paste0("\n\n",
-                      "#' *",i,". ",all_assignments[all_assignments$id %in% ids[i],][[lang_ver]],"*\n",
+                      "#' *",dom,".",i,". ",all_assignments[all_assignments$id %in% ids[i],][[lang_ver]],"*\n",
                       "#' \n",
                       "#+ ", ids[i], "_answer, eval = FALSE\n",
                       all_assignments[all_assignments$id %in% ids[i], "ans"],
                       "\n\n\n")
         rstudioapi::insertText(txt)
 
+      }
       }
 
         stopApp()

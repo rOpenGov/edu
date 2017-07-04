@@ -14,6 +14,7 @@
 #'
 #' @rdname process_assignments
 #' @export
+#'
 process_assignments <- function(path_assignments = "~/btsync/workspace/ropengov/edutest/basics",
                                 outfile_name = "basics_summary",
                                 outfile_path = "~/btsync/workspace/ropengov/edutest/"){
@@ -39,6 +40,7 @@ process_assignments <- function(path_assignments = "~/btsync/workspace/ropengov/
   lines <- readLines(flies[1], encoding = "UTF-8")
   question_lines <- lines[grepl("^#' \\*", lines)]
   chunk_title_lines <- lines[grepl("^#\\+ ", lines)]
+  # chunk_ids <- gsub("^#\\+ |, eval = FALSE", "", chunk_title_lines)
 
   # Then lets loop through each assignment and extract the answer lines
   # AND create and single R-script on the fly
@@ -62,7 +64,7 @@ process_assignments <- function(path_assignments = "~/btsync/workspace/ropengov/
 "#'     code_folding: show\n",
 "#' ---\n",
 "#' \n",
-"#' # Exercises\n",
+# "#' # Exercises\n",
 "#' ******\n\n")
 , file = outfile, append = TRUE)
 
@@ -86,8 +88,10 @@ process_assignments <- function(path_assignments = "~/btsync/workspace/ropengov/
     # write question AND chunk title
     cat(paste0(
       "\n\n\n\n",
-      question_lines[i],"\n",
-      chunk_title_lines[i],"\n",
+      question_lines[i],
+      "\n",
+      chunk_title_lines[i],
+      "\n",
       "\n"), file = outfile, append = TRUE
     )
     # Write all answers
