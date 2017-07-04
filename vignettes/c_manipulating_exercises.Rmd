@@ -34,7 +34,7 @@ Each exercise block must contain, at minimum, the following fields
 where, 
 
 | col | description | optional |
-| --- | ----------  | -------  |
+| --- | ----------------------------------  | ------------------  |
 | `id` | must be a unique identifier for that exercise | required |
 | `domain` | must refer to the domain exercise is part of. For clarity each domain has been splitted into its own file! | required |
 | `grade` | a qualitative description of how challenging the exercise is like `easy`, `moderate` or `difficult`  | optional |
