@@ -91,16 +91,17 @@
     
     
 <div class="contents">
-<p><strong>Created:</strong> 2017-07-05 13:25:27</p>
+<p><strong>Created:</strong> 2017-07-05 16:26:02</p>
 <div id="manipulating-the-existing-exercises" class="section level1">
 <h1 class="hasAnchor">
 <a href="#manipulating-the-existing-exercises" class="anchor"></a>Manipulating the existing exercises</h1>
 <p>Corrections, translations and additions are more than welcome for existing exercises that reside as <code>yaml</code>-files in <a href="https://github.com/rOpenGov/edu/tree/master/data"><code>./data</code></a>-folder. Yaml-format was chosen as it is easy to manually type even through Github website.</p>
 <p>Each exercise block must contain, at minimum, the following fields</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">-</span> id: create_character_vector
-  <span class="kw">domain</span>: basics
-  <span class="kw">lang_en</span>: <span class="st">"Create a character vector containing words </span><span class="kw">`yksi`</span><span class="st"> ja </span><span class="kw">`kaksi`</span><span class="st">"</span>
-  <span class="kw">ans</span>: c(<span class="st">"yksi"</span>, <span class="st">"kaksi"</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">-</span> id: extra_create_character_vector
+  <span class="kw">domain</span>: extra
+  <span class="kw">lang_en</span>: <span class="st">"Create a character vector containing words </span><span class="kw">`one`</span><span class="st"> and </span><span class="kw">`two`</span><span class="st">"</span>
+  <span class="kw">ans</span>: c(<span class="st">"one"</span>, <span class="st">"two"</span>)
+  </code></pre></div>
 <p>where,</p>
 <table style="width:81%;" class="table">
 <colgroup>
@@ -148,8 +149,8 @@
 </tbody>
 </table>
 <p>For multiple languages and altertive correct answers you can do for instance:</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">-</span> id: data_structure_dataframe
-  <span class="kw">domain</span>: basics
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">-</span> id: extra_data_structure_dataframe
+  <span class="kw">domain</span>: extra
   <span class="kw">grade</span>: easy
   <span class="kw">lang_fi</span>: <span class="st">"Luo data ydinasevaltioista, niiden presidenteistä/valtiopäämiehistä ja väestömäärästä (ks. https://en.wikipedia.org/wiki/List_of_states_with_nuclear_weapons)"</span>
   <span class="kw">lang_en</span>: <span class="st">"Create data of states with nuclear weapons, with presidents/heads of state and population (see https://en.wikipedia.org/wiki/List_of_states_with_nuclear_weapons)"</span>
@@ -195,8 +196,8 @@
 <a href="#adding-new-domains-with-new-exercises" class="anchor"></a>Adding new domains with new exercises</h1>
 <p>To make the most out of your R-courses it is good idea to create your own set of questions spesific to your domain or organisation. If you think they are useful for other, please make a pull request and we will incorporate them with the package. If they are tailored for your organisations internal it-environment its probably better to keep them private and out of the public repositories.</p>
 <p>To add a new domain with exercises just create a new <code>yaml</code>-file in <code>/data</code> folder and fill in the content in yaml-format such as:</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">-</span> id: unique_id_for_this_particular_exercise
-  <span class="kw">domain</span>: my_new_domain
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">-</span> id: extra_unique_id_for_this_particular_exercise
+  <span class="kw">domain</span>: extra
   <span class="kw">grade</span>: easy
   <span class="kw">lang_en</span>: <span class="st">"How to shutdown R?"</span>
   <span class="kw">lang_fi</span>: <span class="st">"Miten sammuttaa R?"</span>
@@ -207,6 +208,7 @@
   <span class="kw">lang_de</span>: <span class="st">"Wie man den R herunterfahren kann?"</span>
   <span class="kw">ans</span>: q()</code></pre></div>
 <p>Once you re-build the package the new domain with new exercises is at your disposal!</p>
+<p><img src="http://software.markuskainu.fi/ropengov/edu/ropengov_edu_manipulate.gif" width="600/"></p>
 </div>
 </div>
   </div>
