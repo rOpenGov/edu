@@ -29,6 +29,7 @@ create_assignment <- function() {
       tmp_d <- plyr::ldply(tmp, data.frame, stringsAsFactors=FALSE)
       all_assignments <- bind_rows(all_assignments,tmp_d)
     }
+    all_assignments[is.na(all_assignments)] <- ""
 
     langs <- gsub("lang_", "", names(all_assignments)[grepl("lang", names(all_assignments))])
 
@@ -111,9 +112,10 @@ create_assignment <- function() {
         for (i in 1:length(ids)){
 
           txt <- paste0("\n\n",
-                        "#' *",dom,".",i,". ",all_assignments[all_assignments$id %in% ids[i],][[lang_ver]],"*\n",
-                        "#' \n",
-                        "#' \n",all_assignments[all_assignments$id %in% ids[i],][["extra"]],"\n#' \n",
+                        "#' *",dom,".",i,". ",all_assignments[all_assignments$id %in% ids[i],][[lang_ver]]," *\n",
+                        # "#' \n",
+                        # "#' \n",
+                        all_assignments[all_assignments$id %in% ids[i],][["extra"]],"\n",
                         "#+ ", ids[i], ", eval = FALSE\n",
                         "default_answer()",
                         "\n\n\n")

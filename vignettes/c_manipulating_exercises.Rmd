@@ -25,10 +25,11 @@ Corrections, translations and additions are more than welcome for existing exerc
 Each exercise block must contain, at minimum, the following fields
 
 ```{bash, eval=FALSE}
-- id: create_character_vector
-  domain: basics
-  lang_en: "Create a character vector containing words `yksi` ja `kaksi`"
-  ans: c("yksi", "kaksi")
+- id: extra_create_character_vector
+  domain: extra
+  lang_en: "Create a character vector containing words `one` and `two`"
+  ans: c("one", "two")
+  
 ```
 
 where, 
@@ -45,8 +46,8 @@ where,
 For multiple languages and altertive correct answers you can do for instance:
 
 ```{bash, eval=FALSE}
-- id: data_structure_dataframe
-  domain: basics
+- id: extra_data_structure_dataframe
+  domain: extra
   grade: easy
   lang_fi: "Luo data ydinasevaltioista, niiden presidenteistä/valtiopäämiehistä ja väestömäärästä (ks. https://en.wikipedia.org/wiki/List_of_states_with_nuclear_weapons)"
   lang_en: "Create data of states with nuclear weapons, with presidents/heads of state and population (see https://en.wikipedia.org/wiki/List_of_states_with_nuclear_weapons)"
@@ -96,8 +97,8 @@ To make the most out of your R-courses it is good idea to create your own set of
 To add a new domain with exercises just create a new `yaml`-file in `/data` folder and fill in the content in yaml-format such as:
 
 ```{bash, eval = FALSE}
-- id: unique_id_for_this_particular_exercise
-  domain: my_new_domain
+- id: extra_unique_id_for_this_particular_exercise
+  domain: extra
   grade: easy
   lang_en: "How to shutdown R?"
   lang_fi: "Miten sammuttaa R?"
@@ -113,4 +114,4 @@ To add a new domain with exercises just create a new `yaml`-file in `/data` fold
 
 Once you re-build the package the new domain with new exercises is at your disposal!
 
-
+<img src="http://software.markuskainu.fi/ropengov/edu/ropengov_edu_manipulate.gif" width = 600/>
