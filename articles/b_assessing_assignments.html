@@ -91,7 +91,7 @@
     
     
 <div class="contents">
-<p><strong>Created:</strong> 2017-07-05 16:26:00</p>
+<p><strong>Created:</strong> 2017-07-06 11:49:56</p>
 <div id="collecting-the-assignments" class="section level1">
 <h1 class="hasAnchor">
 <a href="#collecting-the-assignments" class="anchor"></a>Collecting the assignments</h1>
@@ -100,28 +100,35 @@
 <div id="processing-the-assignments" class="section level1">
 <h1 class="hasAnchor">
 <a href="#processing-the-assignments" class="anchor"></a>Processing the assignments</h1>
-<p>Here we assume that you have gathered the assigments on <strong>importing data</strong> into a folder <code>~/rcourse/completed_assignments/import/</code> and each students assignment has a unique file name. The folder structure here is:</p>
+<p>Here we assume that you have gathered the assigments on <strong>importing data</strong> into a folder <code>~/rcourse/completed_assignments/week_1/</code> and each students assignment has a unique file name. The folder structure here is:</p>
 <div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">~</span>
 └─── <span class="kw">rcourse</span>
+    <span class="kw">|</span>─── <span class="kw">assingment_templates</span>
+    <span class="kw">|</span>                      └─── <span class="kw">week_1.R</span>
     <span class="kw">|</span>─── <span class="kw">completed_assignments</span>
-    <span class="kw">|</span>                      └───<span class="kw">basics</span>
-    <span class="kw">|</span>                      └───<span class="kw">import</span>
-    <span class="kw">|</span>                              └─── <span class="kw">student_x_import.R</span>
-    <span class="kw">|</span>                              └─── <span class="kw">student_y_import.R</span>
-    <span class="kw">|</span>                              └─── <span class="kw">student_z_import.R</span>
-    └─── <span class="kw">assignment_summaries</span>
-                        └─── <span class="kw">summary_import.R</span></code></pre></div>
-<p>We could then call the function <code><a href="../reference/process_assignments.html">process_assignments()</a></code> with following values for attributes in order to get the file <code>~/rcourse/assignment_summaries/summary_import.R</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">edu::<span class="kw"><a href="../reference/process_assignments.html">process_assignments</a></span>(<span class="dt">path_assignments =</span> <span class="st">"~/rcourse/completed_assignments/import/"</span>, 
-                         <span class="dt">outfile_name =</span> <span class="st">"summary_import"</span>, 
-                         <span class="dt">outfile_path =</span> <span class="st">"~/rcourse/assignment_summaries/"</span>)</code></pre></div>
+    <span class="kw">|</span>                      └───<span class="kw">week_1</span>
+    <span class="kw">|</span>                      <span class="kw">|</span>      └─── <span class="kw">student_x_week_1.R</span>
+    <span class="kw">|</span>                      <span class="kw">|</span>      └─── <span class="kw">student_y_week_1.R</span>
+    <span class="kw">|</span>                      <span class="kw">|</span>      └─── <span class="kw">student_z_week_1.R</span>
+    <span class="kw">|</span>                      └─── <span class="kw">week_2</span>
+    <span class="kw">|</span>                      └─── <span class="kw">week_3</span>
+    └─── <span class="kw">summaries</span>
+                └─── <span class="kw">summary_week_1.R</span></code></pre></div>
+<p>We could then call the function <code><a href="../reference/process_assignments.html">process_assignments()</a></code> with following values for attributes in order to get the file <code>~/rcourse/summaries/summary_week_1.R</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">edu::<span class="kw"><a href="../reference/process_assignments.html">process_assignments</a></span>(<span class="dt">path_assignments =</span> <span class="st">"~/rcourse/completed_assignments/week_1/"</span>, 
+                         <span class="dt">outfile_name =</span> <span class="st">"summary_week_1"</span>, 
+                         <span class="dt">outfile_path =</span> <span class="st">"~/rcourse/summaries/"</span>)</code></pre></div>
 <p>See the gif-image below for the process:</p>
-<p><img src="http://software.markuskainu.fi/ropengov/edu/ropengov_edu_assess.gif" width="600/"></p>
 </div>
 <div id="distributing-the-summary" class="section level1">
 <h1 class="hasAnchor">
 <a href="#distributing-the-summary" class="anchor"></a>Distributing the summary</h1>
 <p>Once the summary is processed, you can either distribute the resulting R-script or you can render it into a html-file using <code><a href="http://www.rdocumentation.org/packages/rmarkdown/topics/render">rmarkdown::render()</a></code>. If you want chunk of answers to be evaluated, replace the <code>eval = FALSE</code> with <code>eval = TRUE</code>. But remember to review the answers before for any security concerns!</p>
+</div>
+<div id="process-as-a-gif" class="section level1">
+<h1 class="hasAnchor">
+<a href="#process-as-a-gif" class="anchor"></a>Process as a gif</h1>
+<p><img src="http://software.markuskainu.fi/ropengov/edu/edu_assess.gif" width="600/"></p>
 </div>
 </div>
   </div>
@@ -134,6 +141,7 @@
 <li><a href="#collecting-the-assignments">Collecting the assignments</a></li>
       <li><a href="#processing-the-assignments">Processing the assignments</a></li>
       <li><a href="#distributing-the-summary">Distributing the summary</a></li>
+      <li><a href="#process-as-a-gif">Process as a gif</a></li>
       </ul>
 </div>
       </div>
