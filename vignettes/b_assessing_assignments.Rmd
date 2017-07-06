@@ -7,7 +7,7 @@ title: "2. Assessing assignments"
 ```{r setup, include = F}
 library(knitr)
 knitr::opts_chunk$set(list(echo=TRUE,
-                           eval=TRUE,
+                           eval=FALSE,
                            cache=FALSE,
                            warning=FALSE,
                            message=FALSE))
@@ -23,27 +23,30 @@ Depending on the infrastructure there are various ways for collecting the comple
 
 # Processing the assignments
 
-Here we assume that you have gathered the assigments on **importing data** into a folder `~/rcourse/completed_assignments/import/` and each students assignment has a unique file name. The folder structure here is:
+Here we assume that you have gathered the assigments on **importing data** into a folder `~/rcourse/completed_assignments/week_1/` and each students assignment has a unique file name. The folder structure here is:
 
 ```{bash, eval=FALSE}
 ~
 └─── rcourse
+    |─── assingment_templates
+    |                      └─── week_1.R
     |─── completed_assignments
-    |                      └───basics
-    |                      └───import
-    |                              └─── student_x_import.R
-    |                              └─── student_y_import.R
-    |                              └─── student_z_import.R
-    └─── assignment_summaries
-                        └─── summary_import.R
+    |                      └───week_1
+    |                      |      └─── student_x_week_1.R
+    |                      |      └─── student_y_week_1.R
+    |                      |      └─── student_z_week_1.R
+    |                      └─── week_2
+    |                      └─── week_3
+    └─── summaries
+                └─── summary_week_1.R
 ```
 
-We could then call the function `process_assignments()` with following values for attributes in order to get the file  `~/rcourse/assignment_summaries/summary_import.R`.
+We could then call the function `process_assignments()` with following values for attributes in order to get the file  `~/rcourse/summaries/summary_week_1.R`.
 
 ```{r, eval=FALSE}
-edu::process_assignments(path_assignments = "~/rcourse/completed_assignments/import/", 
-                         outfile_name = "summary_import", 
-                         outfile_path = "~/rcourse/assignment_summaries/")
+edu::process_assignments(path_assignments = "~/rcourse/completed_assignments/week_1/", 
+                         outfile_name = "summary_week_1", 
+                         outfile_path = "~/rcourse/summaries/")
 ```
 
 
@@ -51,9 +54,12 @@ See the gif-image below for the process:
 
 
 
-<img src="http://software.markuskainu.fi/ropengov/edu/ropengov_edu_assess.gif" width = 600/>
-
 
 # Distributing the summary
 
 Once the summary is processed, you can either distribute the resulting R-script or you can render it into a html-file using `rmarkdown::render()`. If you want chunk of answers to be evaluated, replace the `eval = FALSE` with `eval = TRUE`. But remember to review the answers before for any security concerns! 
+
+
+# Process as a gif
+
+<img src="http://software.markuskainu.fi/ropengov/edu/edu_assess.gif" width = 600/>

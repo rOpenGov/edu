@@ -43,11 +43,11 @@ See the gif-image below for the process:
 
 
 
-<img src="http://software.markuskainu.fi/ropengov/edu/ropengov_edu.gif" width = 600/>
-
-
 # Distributing assignments
 
 There are several ways for distributing a R-script to your students. You can upload the file somewhere for students to download. If you have your students email addresses, packages like [mailR](https://cran.r-project.org/web/packages/mailR/index.html) and [sendmailR](https://cran.r-project.org/web/packages/sendmailR/index.html) can be used for sending mass emails with attachments.
 
 
+# Process as a gif
+
+<img src="http://software.markuskainu.fi/ropengov/edu/edu_create.gif" width = 600/>

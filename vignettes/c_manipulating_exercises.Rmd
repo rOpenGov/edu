@@ -114,4 +114,6 @@ To add a new domain with exercises just create a new `yaml`-file in `/data` fold
 
 Once you re-build the package the new domain with new exercises is at your disposal!
 
-<img src="http://software.markuskainu.fi/ropengov/edu/ropengov_edu_manipulate.gif" width = 600/>
+# Process as a gif
+
+<img src="http://software.markuskainu.fi/ropengov/edu/edu_manipulate.gif" width = 600/>

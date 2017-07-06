@@ -19,6 +19,7 @@ process_assignments <- function(path_assignments = "~/btsync/workspace/ropengov/
                                 outfile_name = "basics_summary",
                                 outfile_path = "~/btsync/workspace/ropengov/edutest/"){
 
+  require(dplyr)
   flies <- list.files(path = path_assignments, pattern = ".R$|.r$", full.names = TRUE)
 
 
