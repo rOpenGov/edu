@@ -38,7 +38,7 @@ create_assignment <- function() {
       radioButtons("o_source",
                    label = "Select source for exercises",
                    choices =  sources,
-                   selected = "edu",
+                   selected = "edudata",
                    inline = TRUE,
                    width = "98%")
     })
