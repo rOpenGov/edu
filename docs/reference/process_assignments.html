@@ -110,7 +110,7 @@
     
 
     <pre class="usage"><span class='fu'>process_assignments</span>(<span class='kw'>path_assignments</span> <span class='kw'>=</span> <span class='st'>"~/btsync/workspace/ropengov/edutest/basics"</span>,
-  <span class='kw'>outfile_name</span> <span class='kw'>=</span> <span class='st'>"basics_summary"</span>,
+  <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"edudata"</span>, <span class='kw'>outfile_name</span> <span class='kw'>=</span> <span class='st'>"basics_summary"</span>,
   <span class='kw'>outfile_path</span> <span class='kw'>=</span> <span class='st'>"~/btsync/workspace/ropengov/edutest/"</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
@@ -119,6 +119,10 @@
     <tr>
       <th>path_assignments</th>
       <td><p>Absolute path to the folder containing the completed assignments as R.scripts ending either with .R or .r</p></td>
+    </tr>
+    <tr>
+      <th>package</th>
+      <td><p>Name of the installed package that was used to create the assingment and that contains the correct answers</p></td>
     </tr>
     <tr>
       <th>outfile_name</th>
@@ -138,6 +142,7 @@
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'> </div><span class='co'># NOT RUN {</span>
  <span class='fu'>process_assignments</span>(<span class='kw'>path_assignments</span> <span class='kw'>=</span> <span class='st'>"~/btsync/workspace/ropengov/edutest/basics"</span>,
+                   <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"edudata"</span>,
                    <span class='kw'>outfile_name</span> <span class='kw'>=</span> <span class='st'>"basics_summary"</span>,
                    <span class='kw'>outfile_path</span> <span class='kw'>=</span> <span class='st'>"~/btsync/workspace/ropengov/edutest/"</span>)
 

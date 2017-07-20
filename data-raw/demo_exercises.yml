@@ -1,0 +1,52 @@
+# Demo exercises
+- id: extra_create_character_vector
+  domain: extra
+  lang_en: "Create a character vector containing words `one` and `two`"
+  ans: c("one", "two")
+- id: extra_data_structure_dataframe
+  domain: extra
+  grade: easy
+  lang_fi: "Luo data ydinasevaltioista, niiden presidenteistä/valtiopäämiehistä ja väestömäärästä (ks. https://en.wikipedia.org/wiki/List_of_states_with_nuclear_weapons)"
+  lang_en: "Create data of states with nuclear weapons, with presidents/heads of state and population (see https://en.wikipedia.org/wiki/List_of_states_with_nuclear_weapons)"
+  lang_se: "Skapa tabell över stater med kärnvapen, med presidenter och befolkning"
+  lang_ru: "Создать таблицу государств с ядерным оружием, с президентами и населением"
+  extra: |
+        ## Data should look like this!
+        ##             country         president population
+        ## 1      United States      Donald Trump       1234
+        ## 2 Russian Federation    Vladimir Putin       1234
+        ## 3             France François Hollande       1234
+        ## 4     United Kingdom      Elisabeth II       1234
+        ## 5              China        Xi Jinping       1234
+  ans: |
+        data.frame(country = c('United States','Russian Federation','France','United Kingdom','China'),
+                    president = c('Donald Trump','Vladimir Putin','François Hollande','Elisabeth II','Xi Jinping'),
+                    population = c(1234,1234,1234,1234,1234),
+                    stringsAsFactors=FALSE)
+                    )
+        # Or
+        dplyr::data_frame(country = c('United States','Russian Federation','France','United Kingdom','China'),
+                    president = c('Donald Trump','Vladimir Putin','François Hollande','Elisabeth II','Xi Jinping'),
+                    population = c(1234,1234,1234,1234,1234))
+                    )
+        tibble::tribble(
+        # Or
+        ~country, ~president, ~population,
+        "United States","Donald Trump",1234,
+        "Russian Federation","Vladimir Putin",1234,
+        "United Kingdom","François Hollande",1234,
+        "France","Elisabeth II", 1234,
+        "China" ,"Xi Jinping", 1234
+        )
+- id: extra_unique_id_for_this_particular_exercise
+  domain: extra
+  grade: easy
+  lang_en: "How to shutdown R?"
+  lang_fi: "Miten sammuttaa R?"
+  lang_se: "Hur stänger du av R?"
+  lang_ru: "Как выключить R?"
+  lang_fr: "Comment arrêter R?"
+  lang_nl: "Hoe wordt de R uitgeschakeld?"
+  lang_de: "Wie man den R herunterfahren kann?"
+  ans: q()
+

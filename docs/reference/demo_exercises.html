@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Function reference • edu</title>
+<title>Demo exercises for edu-package — demo_exercises • edu</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -37,7 +37,7 @@
   </head>
 
   <body>
-    <div class="container template-reference-index">
+    <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -100,52 +100,49 @@
       </header>
 
       <div class="row">
-  <div class="col-md-9">
+  <div class="col-md-9 contents">
     <div class="page-header">
-      <h1>
-        Reference
-        <small>version&nbsp;0.2</small>
-      </h1>
+    <h1>Demo exercises for edu-package</h1>
     </div>
 
-    <div class="contents">
-      <table class="ref-index">
+    
+    <p>This data provides demo exercises for testing the edu- package</p>
+    
 
-      <colgroup>
-        <col class="alias" />
-        <col class="title" />
-      </colgroup>
+    <pre class="usage"><span class='no'>demo_exercises</span></pre>
+        
+    <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
-      <tbody>
-        <tr>
-          <th colspan="2">
-            <h2 id="section-all-functions" class="hasAnchor"><a href="#section-all-functions" class="anchor"></a>All functions</h2>
-            <p class="section-desc"></p>
-          </th>
-        </tr>
-        <tr>
-          <!--  -->
-          <td>
-            <p><code><a href="demo_exercises.html">demo_exercises</a></code> </p>
-          </td>
-          <td><p>Demo exercises for edu-package</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="process_assignments.html">process_assignments</a></code> </p>
-          </td>
-          <td><p>Process assignments create with edu and completed by students</p></td>
-        </tr>
-      </tbody>
-      </table>
-    </div>
+    <p>yaml-file with :</p><dl class='dl-horizontal'>
+  <dt>id</dt><dd><p>unique id for each exercise</p></dd>
+  <dt>domain</dt><dd><p>self-defined domain that exercise belongs to (affects the edu-package addin)</p></dd>
+  <dt>grade</dt><dd><p>self-defined difficulty of the exercise. for instance easy, moderate or hard</p></dd>
+  <dt>lang_en</dt><dd><p>Question in English</p></dd>
+  <dt>lang_fi</dt><dd><p>Question in Finnish or any other language</p></dd>
+  <dt>lang_se</dt><dd><p>Question in Swedish or any other language</p></dd>
+  <dt>lang_ru</dt><dd><p>Question in Russian or any other language</p></dd>
+  <dt>lang_fr</dt><dd><p>Question in French or any other language</p></dd>
+  <dt>lang_nl</dt><dd><p>Question in Dutch or any other language</p></dd>
+  <dt>lang_de</dt><dd><p>Question in German or any other language</p></dd>
+  <dt>extra</dt><dd><p>Some extra preformatted content you want to be displayed with the exercise</p></dd>
+  <dt>ans</dt><dd><p>Correct answer or multiple alternative answers</p></dd>
+</dl>
+    
+    <h2 class="hasAnchor" id="source"><a class="anchor" href="#source"></a>Source</h2>
+
+    <p><a href='https://github.com/ropengov/edudata'>https://github.com/ropengov/edudata</a></p>
+    
+
   </div>
-
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-      <li><a href="#section-all-functions">All functions</a></li>
-    </ul>
+      
+      <li><a href="#format">Format</a></li>
+
+      <li><a href="#source">Source</a></li>
+          </ul>
+
   </div>
 </div>
 

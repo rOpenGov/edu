@@ -1,6 +1,7 @@
 #' @title Process assignments create with edu and completed by students
 #' @description Function processes number of completed assignments and outputs a single R-script with the question and all students answers AND correct answeers
 #' @param path_assignments Absolute path to the folder containing the completed assignments as R.scripts ending either with .R or .r
+#' @param package Name of the installed package that was used to create the assingment and that contains the correct answers
 #' @param outfile_name Name of the the output script
 #' @param outfile_path Absolute path to the folder where scipt should be written
 #' @author Markus Kainu <markus.kainu@kela.fi>
@@ -8,6 +9,7 @@
 #' @examples
 #'  \dontrun{
 #'  process_assignments(path_assignments = "~/btsync/workspace/ropengov/edutest/basics",
+#'                    package = "edudata",
 #'                    outfile_name = "basics_summary",
 #'                    outfile_path = "~/btsync/workspace/ropengov/edutest/")
 #'  }
@@ -16,6 +18,7 @@
 #' @export
 #'
 process_assignments <- function(path_assignments = "~/btsync/workspace/ropengov/edutest/basics",
+                                package = "edudata",
                                 outfile_name = "basics_summary",
                                 outfile_path = "~/btsync/workspace/ropengov/edutest/"){
 
@@ -99,14 +102,15 @@ process_assignments <- function(path_assignments = "~/btsync/workspace/ropengov/
     cat(paste0(answers, collapse = "\n\n###\n\n"), file = outfile, append = TRUE)
     # Finally get the correct answers from the yaml files by matching the chunk ids
     chunk_id <- gsub("^#\\+ |, eval = FALSE", "", chunk_title_lines[i])
-    # scan assignments
-    assign_ymls <- list.files(system.file(package = "edu", ... = "data/"),pattern = ".yml", full.names = TRUE)
+    # scan assignments from the package mentioned
+
+    datasets <- data(package = package)$result[, "Item"]
     all_assignments <- data_frame()
-    for (i in assign_ymls){
-      tmp <- yaml::yaml.load_file(i)
-      tmp_d <- plyr::ldply(tmp, data.frame, stringsAsFactors=FALSE)
-      all_assignments <- bind_rows(all_assignments,tmp_d)
+    for (i in datasets){
+      tmp <- get(data(list = i, package = package, envir = environment()))
+      all_assignments <- bind_rows(all_assignments,tmp)
     }
+
     correct <- all_assignments[all_assignments$id == chunk_id, ]$ans
     # write the correct as last one
     cat(paste0(

@@ -4,8 +4,14 @@ create_assignment <- function() {
   library(miniUI)
   library(shiny)
   ui <- miniPage(
+
+    ## Define the UI blocks
     gadgetTitleBar("Create an assignment"),
     miniContentPanel(
+      fillRow(flex = c(7, 3), height = "60px",
+              uiOutput("i_source")),
+      fillRow(flex = c(7, 3), height = "60px",
+              uiOutput("i_custom")),
       fillRow(flex = c(7, 3), height = "60px",
               uiOutput("i_lang")),
       fillRow(flex = c(7, 3), height = "60px",
@@ -20,20 +26,106 @@ create_assignment <- function() {
 
   server <- function(input, output, session) {
 
-    require(dplyr)
-    # scan assignments
-    assign_ymls <- list.files(system.file(package = "edu", ... = "data/"),pattern = ".yml", full.names = TRUE)
-    all_assignments <- data_frame()
-    for (i in assign_ymls){
-      tmp <- yaml::yaml.load_file(i)
-      tmp_d <- plyr::ldply(tmp, data.frame, stringsAsFactors=FALSE)
-      all_assignments <- bind_rows(all_assignments,tmp_d)
-    }
-    all_assignments[is.na(all_assignments)] <- ""
 
-    langs <- gsub("lang_", "", names(all_assignments)[grepl("lang", names(all_assignments))])
+    # Data source
+    sources <- c("edu", "edudata", "custom")
+    names(sources) <- c("Demo exercises from edu-package",
+                        "From edudata-package",
+                        "own custom package"
+                        )
+
+    output$i_source <- renderUI({
+      radioButtons("o_source",
+                   label = "Select source for exercises",
+                   choices =  sources,
+                   selected = "edu",
+                   inline = TRUE,
+                   width = "98%")
+    })
+
+    ## If source "local" selected, then display this dialog for choosing the local files
+    # output$i_files <- renderUI({
+    #   if (input$o_source == "local"){
+    #     fileInput(inputId = "o_files",
+    #               label = "Add local exercises",
+    #               accept = c(".yaml", ".yml"),
+    #               multiple = TRUE,
+    #               buttonLabel = "Scan",
+    #               placeholder = "Select yml-files")
+    #   } else list()
+    # })
+
+    output$i_custom <- renderUI({
+      if (input$o_source == "custom"){
+        selectInput(inputId = "o_custom",
+                    label = "Select your own custom package",
+                    choices = installed.packages()[, 1],
+                    selected = "edudata")
+      } else list()
+    })
+
+    ## Scan assignments based on select source
+
+    scan_assingments <- reactive({
+
+      # scan assignments
+      ## if from edu-package, then just read all the rda files in ./data/ folder and pile them up
+      require(dplyr)
+      if (input$o_source == "edu"){
+        datasets <- data(package = "edu")$result[, "Item"]
+        all_assignments <- data_frame()
+        for (i in datasets){
+          tmp <- get(data(list = i, package = "edu", envir = environment()))
+          all_assignments <- bind_rows(all_assignments,tmp)
+        }
+      }
+      ## if from edudata-package, then just read all the rda files in ./data/ folder and pile them up
+      if (input$o_source == "edudata"){
+        if ("edudata" %in% installed.packages()[, 1]){
+
+          datasets <- data(package = "edudata")$result[, "Item"]
+          all_assignments <- data_frame()
+          for (i in datasets){
+            tmp <- get(data(list = i, package = "edudata", envir = environment()))
+            all_assignments <- bind_rows(all_assignments,tmp)
+          }
+
+        } else {
+          stop("Install edudata-package from Github using devtools::install_github('ropengov/edudata')")
+        }
+      }
+      # if (input$o_source == "local"){
+      #
+      #   inFile <- input$o_files
+      #
+      #   assign_ymls <- inFile$datapath
+      #   all_assignments <- data_frame()
+      #   for (i in assign_ymls){
+      #     tmp <- yaml::yaml.load_file(i)
+      #     tmp_d <- plyr::ldply(tmp, data.frame, stringsAsFactors=FALSE)
+      #     all_assignments <- bind_rows(all_assignments,tmp_d)
+      #   }
+      # }
+      if (input$o_source == "custom"){
+
+          datasets <- data(package = input$o_custom)$result[, "Item"]
+          all_assignments <- data_frame()
+          for (i in datasets){
+            tmp <- get(data(list = i, package = input$o_custom, envir = environment()))
+            all_assignments <- bind_rows(all_assignments,tmp)
+          }
+
+      }
+
+      all_assignments[is.na(all_assignments)] <- ""
+      return(all_assignments)
+    })
 
     output$i_lang <- renderUI({
+
+      all_assignments <- scan_assingments()
+      langs <- gsub("lang_", "", names(all_assignments)[grepl("lang", names(all_assignments))])
+
       radioButtons("o_lang",
                   label = "Select language",
                   choices =  langs,
@@ -44,6 +136,7 @@ create_assignment <- function() {
 
     output$i_domain <- renderUI({
 
+      all_assignments <- scan_assingments()
       domains <- unique(all_assignments$domain)
 
       selectInput("o_domain",
@@ -57,6 +150,7 @@ create_assignment <- function() {
 
     output$i_exercise <- renderUI({
 
+      all_assignments <- scan_assingments()
       lang_ver <- paste0("lang_", input$o_lang)
 
       ids <- all_assignments[all_assignments$domain %in% input$o_domain,][["id"]]
@@ -97,6 +191,7 @@ create_assignment <- function() {
 
 
       # Which domains the assignments come from
+      all_assignments <- scan_assingments()
       domains <- unique(all_assignments[all_assignments$id %in% input$o_exercise,][["domain"]])
 
       for (dom in 1:length(domains)){

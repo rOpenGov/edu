@@ -6,11 +6,13 @@
 \usage{
 
   process_assignments(path_assignments = "~/btsync/workspace/ropengov/edutest/basics",
-  outfile_name = "basics_summary",
+  package = "edudata", outfile_name = "basics_summary",
   outfile_path = "~/btsync/workspace/ropengov/edutest/")
 }
 \arguments{
 \item{path_assignments}{Absolute path to the folder containing the completed assignments as R.scripts ending either with .R or .r}
+
+\item{package}{Name of the installed package that was used to create the assingment and that contains the correct answers}
 
 \item{outfile_name}{Name of the the output script}
 
@@ -25,6 +27,7 @@ Function processes number of completed assignments and outputs a single R-script
 \examples{
  \dontrun{
  process_assignments(path_assignments = "~/btsync/workspace/ropengov/edutest/basics",
+                   package = "edudata",
                    outfile_name = "basics_summary",
                    outfile_path = "~/btsync/workspace/ropengov/edutest/")
  }

@@ -25,7 +25,7 @@ devtools::install_github("ropengov/edu")
 
 
 
-<img src="http://software.markuskainu.fi/ropengov/edu/ropengov_edu.gif" width = 800/>
+<img src="http://software.markuskainu.fi/ropengov/edu/edu_create.gif" width = 600/>
 
 
 
