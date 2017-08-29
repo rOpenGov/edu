@@ -23,9 +23,10 @@ devtools::install_github("ropengov/edu")
 
 **Creating assignments gif**
 
-
-
 <img src="http://software.markuskainu.fi/ropengov/edu/edu_create.gif" width = 600/>
+
+**Authors** Markus Kainu, Joona Lehtomäki, Leo Lahti
+
 
 
 
